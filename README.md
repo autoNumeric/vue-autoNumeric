@@ -39,7 +39,7 @@ npm install autonumeric --save
 You'll then be able to use the vue-autonumeric component:
 ```js
 import AutoNumeric from 'AutoNumeric';
-import VueAutoNumeric from 'vue-autonumeric';
+import VueAutonumeric from 'vue-autonumeric';
 ```
 
 ### How to use?
@@ -48,7 +48,7 @@ The AutoNumeric component can be instantiated the same way `AutoNumeric` can.
 
 With an option object:
 ```html
-<autonumeric
+<vue-autonumeric
      v-model="myValue"
      :options="{
          digitGroupSeparator: '.',
@@ -59,34 +59,34 @@ With an option object:
          roundingMethod: 'U',
          minimumValue: '0'
      }"
-/>
+></vue-autonumeric>
 ```
 
 With a predefined option name:
 ```html
-<autonumeric
+<vue-autonumeric
     v-model="myValue"
     :options="'French'"
-/>
+></vue-autonumeric>
 ```
 
 With multiple option objects/predefined options:
 ```html
-<autonumeric
+<vue-autonumeric
     v-model="myValue"
     :options="['euro', { minimumValue: '0' }]"
-/>
+></vue-autonumeric>
 ```
 
 #### Other props
 
 You can define the input placeholder using:
 ```html
-<autonumeric
+<vue-autonumeric
     v-model="myValue"
     :options="'euro'"
     :placeholder="'Enter your value here'"
-/>
+></vue-autonumeric>
 ```
 
 *In the future, you'll be able to define the type of element tag (`<p>`, `<div>`, etc.) you want that component to generate.<br>This will allow you to create any supported tag with the `contenteditable` attribute set to `true`, instead of `<input>` one as it is for now.*
@@ -100,21 +100,21 @@ The `paste`, `drop` and `wheel` events are supported as well.
 
 ### Caveats
 
-Please note that directly setting a `:value='42'` on the `<autonumeric>` component **will break it** (really!).<br>
+Please note that directly setting a `:value='42'` on the `<vue-autonumeric>` component **will break it** (really!).<br>
 Do **NOT** do that:
 ```html
-<autonumeric
+<vue-autonumeric
     v-model="myValue"
     :options="{ minimumValue: '0' }"
     :value="42042.69" <!-- This fails -->
-/>
+></vue-autonumeric>
 ```
 
 ### Demo
 
 The official AutoNumeric [documentation](https://autonumeric.github.io/guide) ~~is~~ will soon be using this component extensively :)<br>
 <br>
-An editable live example is available [on Codepen](https://codepen.io/AnotherLinuxUser/pen/pWgOrZ).
+An editable live example is available [on Codepen](https://codepen.io/AnotherLinuxUser/pen/pWgOrZ?editors=1010).
 
 ### Requirements
 
