@@ -1,4 +1,4 @@
-import VueAutonumeric from './components/Autonumeric.vue';
+import VueAutonumeric from './components/VueAutonumeric.vue';
 
 // Expose component to global scope
 /* eslint no-undef : 0 */

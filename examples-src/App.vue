@@ -18,48 +18,48 @@
 				<div class="pt5 nb5" id="basic-vue-autonumeric">
 					<a href="#basic-vue-autonumeric" :class="headerClasses">
 						<h2 class="ma0 pb2 f2 fw4 lh-1">Autonumeric component usage examples</h2>
-						<p class="ma0 lh-copy f6">Vue-Autonumeric as the flexibility and power of its <a href="https://github.com/autoNumeric/autoNumeric">AutoNumeric parent library</a>. It can be configured as you like.</p>
+						<p class="ma0 lh-copy f6">Vue-Autonumeric as the flexibility and power of its <a href="https://github.com/autoNumeric/autoNumeric" class="repoLink">AutoNumeric parent library</a>. It can be configured as you like.</p>
 					</a>
 					<div :class="boxClasses" :style="boxStyle">
 						<div :class="labelClasses">Default vue-autonumeric</div>
-						<autonumeric :options="''" v-model="autoNumericModel"></autonumeric>
+						<vue-autonumeric :options="''" v-model="autoNumericModel"></vue-autonumeric>
 					</div>
 
 					<div :class="boxClasses" :style="boxStyle">
 						<div :class="labelClasses">With the <code>'euro'</code> option</div>
-						<autonumeric :options="'euro'" v-model="autoNumericModel"></autonumeric>
+						<vue-autonumeric :options="'euro'" v-model="autoNumericModel"></vue-autonumeric>
 					</div>
 
 					<div :class="boxClasses" :style="boxStyle">
 						<div :class="labelClasses">With the <code>'dollar'</code> option</div>
-						<autonumeric :options="'dollar'" v-model="autoNumericModel"></autonumeric>
+						<vue-autonumeric :options="'dollar'" v-model="autoNumericModel"></vue-autonumeric>
 					</div>
 
 					<div :class="boxClasses" :style="boxStyle">
 						<div :class="labelClasses">With the <code>'integer'</code> option</div>
-						<autonumeric :options="'integer'" v-model="autoNumericModel"></autonumeric>
+						<vue-autonumeric :options="'integer'" v-model="autoNumericModel"></vue-autonumeric>
 					</div>
 
 					<div :class="boxClasses" :style="boxStyle">
 						<div :class="labelClasses">With the <code>'integerPos'</code> option</div>
-						<autonumeric :options="'integerPos'" v-model="autoNumericModel"></autonumeric>
+						<vue-autonumeric :options="'integerPos'" v-model="autoNumericModel"></vue-autonumeric>
 					</div>
 
 					<div :class="boxClasses" :style="boxStyle">
 						<div :class="labelClasses">With the <code>'French'</code> predefined language and a placeholder</div>
-						<autonumeric
+						<vue-autonumeric
 								:options="'French'"
 								:placeholder="'Enter € here'"
 								v-model="autoNumericModel"
-						></autonumeric>
+						></vue-autonumeric>
 					</div>
 
 					<div :class="boxClasses" :style="boxStyle">
 						<div :class="labelClasses">With the <code>'NorthAmerican'</code> predefined language</div>
-						<autonumeric
+						<vue-autonumeric
 								:options="'NorthAmerican'"
 								v-model="autoNumericModel"
-						></autonumeric>
+						></vue-autonumeric>
 					</div>
 
 					<div :class="boxClasses" :style="boxStyle">
@@ -68,14 +68,14 @@
     decimalCharacter : ',',
     digitGroupSeparator : '.'
 }</code></div>
-						<autonumeric
+						<vue-autonumeric
 								:options="{
 						            currencySymbol : 'Ω',
 								    decimalCharacter : ',',
 								    digitGroupSeparator : '.'
 								}"
 								v-model="autoNumericModel"
-						></autonumeric>
+						></vue-autonumeric>
 					</div>
 				</div>
 			</div>
@@ -84,13 +84,13 @@
 </template>
 
 <script type="text/babel">
-    import Autonumeric from '../src/components/Autonumeric.vue';
+    import VueAutonumeric from '../src/components/VueAutonumeric.vue';
 
     export default {
         name      : 'app',
 
         components: {
-            Autonumeric,
+            VueAutonumeric,
         },
 
         data() {
@@ -184,5 +184,15 @@
 		margin           : 0;
 		border-radius    : 3px;
 		background-color : rgba(27, 31, 35, .05);
+	}
+
+	.repoLink {
+		text-decoration: none;
+		color          : #0094ff;
+
+		&:hover {
+			text-decoration: underline;
+			color          : #0068B7;
+		}
 	}
 </style>

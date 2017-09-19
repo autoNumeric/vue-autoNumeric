@@ -144,8 +144,7 @@ Huge Thanks :)
 
 > PS:<br>
 I would love to know how you're using vue-autonumeric.<br>
-<br>
-Contact me!
+Contact me! :)
 
 
 [downloads-image]: http://img.shields.io/npm/dm/vue-autonumeric.svg
