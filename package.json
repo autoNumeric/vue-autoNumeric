@@ -1,0 +1,99 @@
+{
+  "name": "vue-autonumeric",
+  "version": "1.0.0",
+  "description": "An AutoNumeric wrapper for Vue.js",
+  "author": "Alexandre Bonneau <alexandre.bonneau@linuxfr.eu>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --config ./build/webpack.dev.js --open --inline --hot",
+    "build:debug": "cross-env NODE_ENV=debug webpack --config build/webpack.dist.js",
+    "build:release": "cross-env NODE_ENV=production webpack --config build/webpack.dist.js",
+    "build:examples": "webpack --config build/webpack.examples.js",
+    "build": "npm run build:debug && npm run build:release && npm run build:examples",
+    "clean": "rimraf ./examples/examples.bundle.css ./examples/examples.bundle.js",
+    "lint": "eslint --ext .js,.vue src examples-src build",
+    "lintfix": "eslint --fix --ext .js,.vue src examples-src build"
+  },
+  "main": "dist/vue-autonumeric.min.js",
+  "readmeFilename": "README.md",
+  "keywords": [
+    "autonumeric",
+    "currency",
+    "money",
+    "monetary",
+    "Euro",
+    "Dollar",
+    "Pound",
+    "number",
+    "numeric",
+    "format",
+    "form",
+    "input",
+    "mask",
+    "as-you-type",
+    "live",
+    "vue",
+    "vue.js",
+    "vuejs",
+    "ui",
+    "components"
+  ],
+  "dependencies": {
+    "autonumeric": "^4.1.0-beta.8"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.7.7",
+    "babel-core": "^6.0.0",
+    "babel-eslint": "^8.0.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.4.0",
+    "babel-preset-es2015": "^6.0.0",
+    "babel-preset-stage-2": "^6.24.1",
+    "cross-env": "^3.0.0",
+    "css-loader": "^0.25.0",
+    "deep-assign": "^2.0.0",
+    "eslint": "^4.7.1",
+    "eslint-friendly-formatter": "^3.0.0",
+    "eslint-loader": "^1.9.0",
+    "eslint-plugin-html": "^3.2.2",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "extract-text-webpack-plugin": "^3.0.0",
+    "node-sass": "^4.5.3",
+    "rimraf": "^2.6.1",
+    "sass-loader": "^6.0.6",
+    "vue": "^2.2.6",
+    "vue-loader": "^11.3.3",
+    "vue-style-loader": "^3.0.0",
+    "vue-template-compiler": "^2.2.6",
+    "webpack": "^3.5.6",
+    "webpack-bundle-analyzer": "^2.2.1",
+    "webpack-dev-server": "^2.7.1"
+  },
+  "homepage": "https://github.com/autoNumeric/vue-autoNumeric/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/autoNumeric/vue-autoNumeric.git"
+  },
+  "bugs": {
+    "url": "https://github.com/autoNumeric/vue-autoNumeric/issues"
+  },
+  "autoupdate": {
+    "source": "git",
+    "target": "git://github.com/autoNumeric/vue-autoNumeric.git",
+    "basePath": "",
+    "files": [
+      "src/Autonumeric.vue"
+    ]
+  },
+  "engines": {
+    "node": ">= 4.0.0",
+    "npm": ">= 3.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}
