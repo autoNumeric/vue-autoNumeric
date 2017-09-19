@@ -1,5 +1,5 @@
 /**
- * vue-autonumeric v1.0.0 (https://github.com/autoNumeric/vue-autoNumeric)
+ * vue-autonumeric v1.0.1 (https://github.com/autoNumeric/vue-autoNumeric)
  * © 2017 Alexandre Bonneau <alexandre.bonneau@linuxfr.eu>
  * Released under the MIT License.
  */
@@ -177,18 +177,18 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.VueAutonumeric = undefined;
 
-var _Autonumeric = __webpack_require__(10);
+var _VueAutonumeric = __webpack_require__(10);
 
-var _Autonumeric2 = _interopRequireDefault(_Autonumeric);
+var _VueAutonumeric2 = _interopRequireDefault(_VueAutonumeric);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 if (typeof window !== 'undefined' && window.Vue) {
-    Vue.component('vue-autonumeric', _Autonumeric2.default);
+    Vue.component('vue-autonumeric', _VueAutonumeric2.default);
 }
 
-exports.VueAutonumeric = _Autonumeric2.default;
-exports.default = _Autonumeric2.default;
+exports.VueAutonumeric = _VueAutonumeric2.default;
+exports.default = _VueAutonumeric2.default;
 
 /***/ }),
 /* 10 */
@@ -289,7 +289,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var defaultOptions = {};
 
 exports.default = {
-    name: 'Autonumeric',
+    name: 'VueAutonumeric',
 
     props: {
         value: {
