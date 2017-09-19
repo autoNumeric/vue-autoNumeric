@@ -2,6 +2,14 @@
 
 A Vue.js component that wraps the awesome autoNumeric input formatter library
 
+[![NPM][nodei-image]][nodei-url]
+<br>
+[![NPM version][npm-image]][npm-url]
+[![Downloads][downloads-image]][downloads-url]
+[![Known Vulnerabilities][snyk-image]][snyk-url]
+<br><br>
+Get in touch on [![Gitter chat][gitter-image]][gitter-url]
+
 ---
 
 vue-autoNumeric wrap the awesome autoNumeric library and generate an `<input>` element managed by AutoNumeric.
@@ -123,3 +131,15 @@ Huge Thanks :)
 I would love to know how you're using vue-autonumeric.<br>
 <br>
 Contact me!
+
+
+[downloads-image]: http://img.shields.io/npm/dm/vue-autonumeric.svg
+[downloads-url]: http://badge.fury.io/js/vue-autonumeric
+[gitter-image]: https://img.shields.io/badge/gitter-autoNumeric%2FautoNumeric-brightgreen.svg
+[gitter-url]: https://gitter.im/autoNumeric/vue-autoNumeric
+[npm-image]: https://img.shields.io/npm/v/vue-autonumeric.svg
+[npm-url]: https://npmjs.org/package/vue-autonumeric
+[nodei-image]: https://nodei.co/npm/vue-autonumeric.png?downloads=true&downloadRank=true&stars=true
+[nodei-url]: https://nodei.co/npm/vue-autonumeric
+[snyk-image]: https://snyk.io/test/github/autoNumeric/vue-autoNumeric/badge.svg
+[snyk-url]: https://snyk.io/test/github/autoNumeric/vue-autoNumeric
