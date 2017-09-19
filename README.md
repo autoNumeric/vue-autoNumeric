@@ -14,6 +14,8 @@ Get in touch on [![Gitter chat][gitter-image]][gitter-url]
 
 vue-autoNumeric wraps the awesome autoNumeric library and generate an `<input>` element managed by [AutoNumeric](https://github.com/autoNumeric/autoNumeric/).
 
+**Checkout the [demo](https://codepen.io/AnotherLinuxUser/pen/pWgOrZ?editors=1010)!**
+
 ### Installation
 
 ```sh
