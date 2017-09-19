@@ -12,7 +12,7 @@ Get in touch on [![Gitter chat][gitter-image]][gitter-url]
 
 ---
 
-vue-autoNumeric wrap the awesome autoNumeric library and generate an `<input>` element managed by AutoNumeric.
+vue-autoNumeric wraps the awesome autoNumeric library and generate an `<input>` element managed by [AutoNumeric](https://github.com/autoNumeric/autoNumeric/).
 
 ### Installation
 
@@ -22,9 +22,24 @@ yarn add vue-autonumeric
 npm install vue-autonumeric --save
 ```
 
-You also need to link the [AutoNumeric](https://github.com/autoNumeric/autoNumeric/) library in your html `<head>` tag like so:
+You also need to link the [AutoNumeric](https://github.com/autoNumeric/autoNumeric/) library in your html `<head>` tag since `vue-autonumeric` does not bundle it.
+You can link AutoNumeric either with a CDN like so:
 ```html
 <script src="//unpkg.com/autonumeric"></script>
+```
+
+...or by importing it too in your source code:
+
+```sh
+yarn add autonumeric
+# or
+npm install autonumeric --save
+```
+
+You'll then be able to use the vue-autonumeric component:
+```js
+import AutoNumeric from 'AutoNumeric';
+import VueAutoNumeric from 'vue-autonumeric';
 ```
 
 ### How to use?
