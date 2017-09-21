@@ -1,5 +1,8 @@
 ## Changelog for vue-autoNumeric
 
+### 1.0.2
++ Fix issue #3 Update the value when the `:options` prop is modified
+
 ### 1.0.1
 + Rename the component source from `Autonumeric` to `VueAutonumeric` to prevent confusion with the `AutoNumeric` library
 + Update the examples source accordingly

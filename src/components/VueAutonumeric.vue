@@ -231,6 +231,14 @@ OTHER DEALINGS IN THE SOFTWARE.
                 // After each watch call, reset the 'manually modified' tracking state to `false`
                 this.resetUserInteraction();
             },
+
+            options(newValue, oldValue) {
+                if (JSON.stringify(newValue) !== JSON.stringify(oldValue)) { //TODO Find a better way (without external libraries) to compare the two objects
+                    // Compare the new and old option, and only update if they are different
+                    this.anElement.update(newValue);
+                }
+                //XXX This can be tested by using `$vm0.$props.options = { currencySymbol : '#' };` in the console
+            },
         },
 
         //TODO Allow the AutoNumeric component to generate other (allowed) html tags, and not only <input> like currently, with the 'contenteditable' attribute set to `true` -> Use a `render` function

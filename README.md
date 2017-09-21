@@ -100,6 +100,8 @@ This wrapper supports setting the AutoNumeric options via an `:options` [prop](h
 
 The `paste`, `drop` and `wheel` events are supported as well.
 
+Moreover, if you modify the `:options` prop, the AutoNumeric settings will be automatically updated with the new options. 
+
 ### Caveats
 
 Please note that directly setting a `:value='42'` on the `<vue-autonumeric>` component **will break it** (really!).<br>
