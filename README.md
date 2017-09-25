@@ -116,7 +116,7 @@ Do **NOT** do that:
 
 ### Demo
 
-The official AutoNumeric [documentation](https://autonumeric.github.io/guide) ~~is~~ will soon be using this component extensively :)<br>
+The official AutoNumeric [documentation](http://autonumeric.org/#/guide) is using this component extensively :)<br>
 <br>
 An editable live example is available [on Codepen](https://codepen.io/AnotherLinuxUser/pen/pWgOrZ?editors=1010).
 
