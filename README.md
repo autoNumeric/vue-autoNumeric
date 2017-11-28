@@ -24,13 +24,21 @@ yarn add vue-autonumeric
 npm install vue-autonumeric --save
 ```
 
-You also need to link the [AutoNumeric](https://github.com/autoNumeric/autoNumeric/) library in your html `<head>` tag since `vue-autonumeric` does not bundle it.
-You can link AutoNumeric either with a CDN like so:
+*Note: In order to minimize the size of the vue-autoNumeric component, the AutoNumeric library dependency **is not** bundled with it.*
+
+This means you **need** to link the [AutoNumeric](https://github.com/autoNumeric/autoNumeric/) library with either ways:
+ 
+#### ...in your html `<head>` tag
+In the html `<head>` tag directly, or by using a CDN like so:
+
 ```html
+<script src="../node_modules/autonumeric/dist/autonumeric.min.js"></script>
+<!-- or -->
 <script src="//unpkg.com/autonumeric"></script>
 ```
 
-...or by importing it too in your source code:
+#### ...or by importing it directly as a module
+You can choose to directly import the `AutoNumeric` library in your source code using:
 
 ```sh
 yarn add autonumeric
@@ -38,9 +46,9 @@ yarn add autonumeric
 npm install autonumeric --save
 ```
 
-You'll then be able to use the vue-autonumeric component:
+You'll then be able to use the `vue-autonumeric` component in your scripts using:
 ```js
-import AutoNumeric from 'AutoNumeric';
+import AutoNumeric from 'autonumeric';
 import VueAutonumeric from 'vue-autonumeric';
 ```
 
@@ -119,6 +127,8 @@ Do **NOT** do that:
 The official AutoNumeric [documentation](http://autonumeric.org/#/guide) is using this component extensively :)<br>
 <br>
 An editable live example is available [on Codepen](https://codepen.io/AnotherLinuxUser/pen/pWgOrZ?editors=1010).
+
+Moreover, you can check the [shipped examples](https://github.com/autoNumeric/vue-autoNumeric/blob/master/examples/index.html) in your browser, and study its [source here](https://github.com/autoNumeric/vue-autoNumeric/tree/master/examples-src).
 
 ### Requirements
 

@@ -1,5 +1,12 @@
 ## Changelog for vue-autoNumeric
 
+### 1.0.3
++ Fix importing issues with the `AutoNumeric` library
++ Complete the documentation on how to install and use the component
++ Add a link to the examples page and its source in the Readme
++ Fix the example script imports by removing the unneeded AutoNumeric link
++ Fix issue #4 Error when building with webpack 2 on linux
+
 ### 1.0.2
 + Fix issue #3 Update the value when the `:options` prop is modified
 

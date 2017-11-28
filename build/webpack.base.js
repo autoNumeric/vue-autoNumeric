@@ -68,8 +68,9 @@ module.exports = {
         timings : true,
     },
 
-    // cf. https://webpack.js.org/configuration/externals/
     externals: {
+        // This prevent bundling the AutoNumeric library inside the vue-autornumeric component
+        // cf. https://webpack.js.org/configuration/externals/
         AutoNumeric: 'autonumeric',
     },
 };
