@@ -19,7 +19,6 @@ module.exports = {
         alias: {
             src : 'src',
             vue$: 'vue/dist/vue.common.js',
-            AutoNumeric : 'node_modules/autonumeric/dist/autoNumeric.min',
         },
 
         extensions: ['.js', '.json', '.vue', '.scss'],
@@ -71,6 +70,6 @@ module.exports = {
 
     // cf. https://webpack.js.org/configuration/externals/
     externals: {
-        AutoNumeric: 'AutoNumeric',
+        AutoNumeric: 'autonumeric',
     },
 };

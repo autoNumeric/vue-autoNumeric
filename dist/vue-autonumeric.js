@@ -5,13 +5,13 @@
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("AutoNumeric"));
+		module.exports = factory(require("autonumeric"));
 	else if(typeof define === 'function' && define.amd)
-		define("VueAutonumeric", ["AutoNumeric"], factory);
+		define("VueAutonumeric", ["autonumeric"], factory);
 	else if(typeof exports === 'object')
-		exports["VueAutonumeric"] = factory(require("AutoNumeric"));
+		exports["VueAutonumeric"] = factory(require("autonumeric"));
 	else
-		root["VueAutonumeric"] = factory(root["AutoNumeric"]);
+		root["VueAutonumeric"] = factory(root["autonumeric"]);
 })(this, function(__WEBPACK_EXTERNAL_MODULE_43__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
