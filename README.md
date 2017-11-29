@@ -1,6 +1,6 @@
 ## vue-autoNumeric
 
-A Vue.js component that wraps the awesome autoNumeric input formatter library
+A Vue.js component that wraps the awesome [AutoNumeric](https://github.com/autoNumeric/autoNumeric/) input formatter library
 
 [![NPM][nodei-image]][nodei-url]
 <br>
@@ -12,7 +12,7 @@ Get in touch on [![Gitter chat][gitter-image]][gitter-url]
 
 ---
 
-vue-autoNumeric wraps the awesome autoNumeric library and generate an `<input>` element managed by [AutoNumeric](https://github.com/autoNumeric/autoNumeric/).
+vue-autoNumeric wraps the awesome AutoNumeric library and generate an `<input>` element managed by [AutoNumeric](https://github.com/autoNumeric/autoNumeric/).
 
 **Checkout the [demo](https://codepen.io/AnotherLinuxUser/pen/pWgOrZ?editors=1010)!**
 
@@ -28,17 +28,32 @@ npm install vue-autonumeric --save
 
 This means you **need** to link the [AutoNumeric](https://github.com/autoNumeric/autoNumeric/) library with either ways:
  
-#### ...in your html `<head>` tag
-In the html `<head>` tag directly, or by using a CDN like so:
+#### ...in your html `<head>` tag directly
 
 ```html
+<!-- locally... -->
 <script src="../node_modules/autonumeric/dist/autonumeric.min.js"></script>
-<!-- or -->
-<script src="//unpkg.com/autonumeric"></script>
+<!-- ...or by using a CDN -->
+<script src="https://unpkg.com/autonumeric"></script>
+```
+
+Then you need to tell Webpack to treat the `AutoNumeric` dependency as [external](https://webpack.js.org/configuration/externals/) so that it does not try to bundle it.<br>Here is a really simple `webpack.config.js` example that does that:
+
+```js
+module.exports = {
+    entry  : './src/vueAutonumericTest.js',
+    output : {
+        filename: './dist/bundle.js'
+    },
+    externals: {
+        AutoNumeric: 'AutoNumeric',
+    },
+};
 ```
 
 #### ...or by importing it directly as a module
-You can choose to directly import the `AutoNumeric` library in your source code using:
+
+You can choose to directly import the AutoNumeric library in your source code.<br>First, install the `autonumeric` dependency so that Webpack can find it using:
 
 ```sh
 yarn add autonumeric
@@ -46,10 +61,38 @@ yarn add autonumeric
 npm install autonumeric --save
 ```
 
-You'll then be able to use the `vue-autonumeric` component in your scripts using:
+You will as usual be able to use the `vue-autonumeric` component in your Vue components using:
 ```js
-import AutoNumeric from 'autonumeric';
-import VueAutonumeric from 'vue-autonumeric';
+import VueAutonumeric from '../src/components/VueAutonumeric.vue';
+
+export default {
+    name      : 'myComponent',
+
+    components: {
+        VueAutonumeric,
+    },
+
+    data() {
+        return {
+            //
+        };
+    },
+}
+```
+
+However, when doing that if you want to be able to bundle all the scripts together with Webpack, you'll need to define an alias for the `AutoNumeric` library in your Webpack config like so:
+```js
+module.exports = {
+    entry  : './src/vueAutonumericTest.js',
+    output : {
+        filename: './dist/bundle.js'
+    },
+    resolve: {
+        alias: {
+            AutoNumeric: 'autonumeric/dist/autoNumeric.min',
+        },
+    },
+};
 ```
 
 ### How to use?

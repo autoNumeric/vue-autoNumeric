@@ -1,5 +1,9 @@
 ## Changelog for vue-autoNumeric
 
+### 1.0.4
++ Fix the component size issue which bundled the whole `AutoNumeric` library
++ Update the documentation with how to install the component, depending if the AutoNumeric library should be bundled or not
+
 ### 1.0.3
 + Fix importing issues with the `AutoNumeric` library
 + Complete the documentation on how to install and use the component
