@@ -5,11 +5,11 @@
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("AutoNumeric"));
+		module.exports = factory(require("autonumeric"));
 	else if(typeof define === 'function' && define.amd)
-		define("VueAutonumeric", ["AutoNumeric"], factory);
+		define("VueAutonumeric", ["autonumeric"], factory);
 	else if(typeof exports === 'object')
-		exports["VueAutonumeric"] = factory(require("AutoNumeric"));
+		exports["VueAutonumeric"] = factory(require("autonumeric"));
 	else
 		root["VueAutonumeric"] = factory(root["AutoNumeric"]);
 })(this, function(__WEBPACK_EXTERNAL_MODULE_43__) {
@@ -284,9 +284,9 @@ var _assign = __webpack_require__(15);
 
 var _assign2 = _interopRequireDefault(_assign);
 
-var _AutoNumeric = __webpack_require__(43);
+var _autonumeric = __webpack_require__(43);
 
-var _AutoNumeric2 = _interopRequireDefault(_AutoNumeric);
+var _autonumeric2 = _interopRequireDefault(_autonumeric);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -338,7 +338,7 @@ exports.default = {
             options = this.manageOptionElement(this.options);
         }
 
-        this.anElement = new _AutoNumeric2.default(this.$refs.autoNumericInput, options);
+        this.anElement = new _autonumeric2.default(this.$refs.autoNumericInput, options);
         if (this.value !== null && this.value !== '') {
             this.anElement.set(this.value);
 
@@ -363,7 +363,7 @@ exports.default = {
         manageOptionElement: function manageOptionElement(optionElement) {
             var options = void 0;
             if (typeof optionElement === 'string' || optionElement instanceof String) {
-                options = _AutoNumeric2.default.getPredefinedOptions()[optionElement];
+                options = _autonumeric2.default.getPredefinedOptions()[optionElement];
                 if (options === void 0 || options === null) {
                     console.warn('The given pre-defined options [' + optionElement + '] is not recognized by autoNumeric.\nSwitching back to the default options.');
                     options = defaultOptions;

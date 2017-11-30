@@ -6,6 +6,9 @@ const webpack = require('webpack');
 const options = require('./options');
 const base    = require('./webpack.base.js');
 
+// do not exclude the autonumeric in the bundle of the examples page
+delete base.externals;
+
 const config = merge(base, {
     entry: options.paths.resolve('examples-src/index.js'),
 
