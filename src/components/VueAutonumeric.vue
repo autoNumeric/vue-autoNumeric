@@ -54,7 +54,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 </template>
 
 <script type="text/babel">
-    import AutoNumeric from 'AutoNumeric';
+    import AutoNumeric from 'autonumeric';
 
     // Custom default autoNumeric option can be set here to override the default autoNumeric ones
     const defaultOptions = {};
