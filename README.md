@@ -187,21 +187,29 @@ This supports the same browsers than AutoNumeric supports:
 *(latest 2 versions)*<br><br>
 If you use IE/Edge/Safari/Opera, this *might* work ;)
 
-### License
+### Contributing
 
-`vue-autoNumeric` is open source and released under the [MIT License](https://github.com/autoNumeric/vue-autoNumeric/blob/master/LICENSE).
+Whenever you change the source code, you can check how it affects the default examples by first building those in `examples/index.html` with:
+```sh
+yarn build:examples
+```
+
+The [contribution guidelines](https://github.com/autoNumeric/autoNumeric/blob/next/doc/CONTRIBUTING.md) for vue-autoNumeric are the same than for the parent [AutoNumeric](https://github.com/autoNumeric/autoNumeric) project.
 
 ### Support
 
 As always, if you find this useful, please consider [supporting its development](https://www.patreon.com/user?u=4810062)!<br>
 Huge Thanks :)
 
+### License
 
-<br>Copyright © 2016 Alexandre Bonneau
+`vue-autoNumeric` is open source and released under the [MIT License](https://github.com/autoNumeric/vue-autoNumeric/blob/master/LICENSE).
+
+<br>Copyright © 2016-2018 Alexandre Bonneau
 
 > PS:<br>
 I would love to know how you're using vue-autonumeric.<br>
-Contact me! :)
+Contact and tell me! :)
 
 
 [downloads-image]: http://img.shields.io/npm/dm/vue-autonumeric.svg
