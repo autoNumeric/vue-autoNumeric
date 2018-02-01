@@ -96,6 +96,24 @@
 								v-model="autoNumericModel"
 						/>
 					</div>
+
+					<div :class="boxClasses" :style="boxStyle">
+						<div :class="labelClasses">Non-input element with the `contenteditable` attribute</div>
+						<vue-autonumeric
+								options="euro"
+								v-model="autoNumericModel"
+								tag="p"
+						/>
+					</div>
+
+					<div :class="boxClasses" :style="boxStyle">
+						<div :class="labelClasses">The `placeholder` attribute is passed as a prop too</div>
+						<vue-autonumeric
+								:options="'euro'"
+								placeholder="This is the placeholder"
+								v-model="autoNumericModel"
+						/>
+					</div>
 				</div>
 			</div>
 		</div>

@@ -133,6 +133,8 @@ With multiple option objects/predefined options:
 
 #### Other props
 
+##### Placeholder
+
 You can define the input placeholder using:
 ```html
 <vue-autonumeric
@@ -142,7 +144,19 @@ You can define the input placeholder using:
 ></vue-autonumeric>
 ```
 
-*In the future, you'll be able to define the type of element tag (`<p>`, `<div>`, etc.) you want that component to generate.<br>This will allow you to create any supported tag with the `contenteditable` attribute set to `true`, instead of `<input>` one as it is for now.*
+##### Tag
+
+You can also specify the type of html tag (within the [AutoNumeric supported list](https://github.com/autoNumeric/autoNumeric/tree/next#on-other-dom-elements)) this component should generate using the `tag` prop.
+By default, an `<input>` element is generated, but if you want a `<div>` element, you can use:
+```html
+<vue-autonumeric
+    v-model="myValue"
+    options="euro"
+    tag="div"
+></vue-autonumeric>
+```
+
+*Note: this will automatically set the `contenteditable` attribute to `true` for that generated element.*
 
 #### Integration with other scripts & events support
 

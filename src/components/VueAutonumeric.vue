@@ -1,11 +1,11 @@
 <!--
               vue-autonumeric
 
-@version      1.0.4
-@date         2017-11-29 UTC 20:00
+@version      1.0.5
+@date         2018-02-01 UTC 22:00
 
 @author       Alexandre Bonneau
-@copyright    2016 © Alexandre Bonneau <alexandre.bonneau@linuxfr.eu>
+@copyright    2018 © Alexandre Bonneau <alexandre.bonneau@linuxfr.eu>
 
 @summary      A Vue.js component that wraps the awesome autoNumeric
               input formatter library
@@ -37,22 +37,6 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 -->
 
-<template>
-	<input
-			type="text"
-			ref="autoNumericInput"
-			@keydown="setUserInteraction"
-			@paste="setUserInteraction"
-			@wheel="setUserInteraction"
-			@drop="setUserInteraction"
-
-			@keyup="resetUserInteraction"
-			@blur="resetUserInteraction"
-			:placeholder="placeholder"
-			v-on:autoNumeric:rawValueModified="updateVModel"
-	>
-</template>
-
 <script type="text/babel">
     import AutoNumeric from 'AutoNumeric';
 
@@ -83,6 +67,45 @@ OTHER DEALINGS IN THE SOFTWARE.
         //TODO If an html value attribute is set in the source, then the 'linked' component sharing the same v-model are not updated with the value nor formatted on load (it takes precedence over the changes made by other inputs, and always keep `value` to the initial value)
         name: 'VueAutonumeric',
 
+        /**
+         * Allow the vue-autonumeric component to generate other (allowed) html tags, and not only the `<input>` one like currently.
+         * This sets its 'contenteditable' attribute to `true` to make it interactive.
+         *
+         * @param {function} createElement
+         * @returns {*}
+         */
+        render(createElement) {
+            const isInput = this.tag === 'input';
+
+            let attributes;
+            if (isInput) {
+                attributes = {
+                    type           : 'text',
+                    placeholder    : this.placeholder,
+                };
+            } else {
+                attributes = {
+                    contenteditable: true,
+                };
+            }
+
+            return createElement(this.tag, {
+                attrs: attributes,
+                ref  : 'autoNumericElement',
+                on   : {
+                    keydown: this.setUserInteraction,
+                    paste  : this.setUserInteraction,
+                    wheel  : this.setUserInteraction,
+                    drop   : this.setUserInteraction,
+
+                    keyup: this.resetUserInteraction,
+                    blur : this.resetUserInteraction,
+
+                    'autoNumeric:rawValueModified': this.updateVModel,
+                },
+            });
+        },
+
         props: {
             value: {
                 type    : Number,
@@ -100,6 +123,12 @@ OTHER DEALINGS IN THE SOFTWARE.
             placeholder: { // The <input> placeholder text. This is only used if the generated element is an <input>.
                 type    : String,
                 required: false,
+            },
+
+            tag: {
+                type    : String,
+                required: false,
+                default : 'input',
             },
         },
 
@@ -136,8 +165,8 @@ OTHER DEALINGS IN THE SOFTWARE.
                 options = this.manageOptionElement(this.options);
             }
 
-            // Initialize the autoNumeric input
-            this.anElement = new AutoNumeric(this.$refs.autoNumericInput, options);
+            // Initialize the autoNumeric element
+            this.anElement = new AutoNumeric(this.$refs.autoNumericElement, options);
             if (this.value !== null && this.value !== '') {
                 this.anElement.set(this.value);
                 // The `v-model` must be updated with that default value on startup
@@ -240,7 +269,5 @@ OTHER DEALINGS IN THE SOFTWARE.
                 //XXX This can be tested by using `$vm0.$props.options = { currencySymbol : '#' };` in the console
             },
         },
-
-        //TODO Allow the AutoNumeric component to generate other (allowed) html tags, and not only <input> like currently, with the 'contenteditable' attribute set to `true` -> Use a `render` function
     };
 </script>

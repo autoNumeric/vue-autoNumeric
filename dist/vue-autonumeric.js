@@ -1,6 +1,6 @@
 /**
- * vue-autonumeric v1.0.4 (https://github.com/autoNumeric/vue-autoNumeric)
- * © 2017 Alexandre Bonneau <alexandre.bonneau@linuxfr.eu>
+ * vue-autonumeric v1.0.5 (https://github.com/autoNumeric/vue-autoNumeric)
+ * © 2018 Alexandre Bonneau <alexandre.bonneau@linuxfr.eu>
  * Released under the MIT License.
  */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -198,7 +198,7 @@ var Component = __webpack_require__(11)(
   /* script */
   __webpack_require__(12),
   /* template */
-  __webpack_require__(44),
+  null,
   /* scopeId */
   null,
   /* cssModules */
@@ -295,6 +295,39 @@ var defaultOptions = {};
 exports.default = {
     name: 'VueAutonumeric',
 
+    render: function render(createElement) {
+        var isInput = this.tag === 'input';
+
+        var attributes = void 0;
+        if (isInput) {
+            attributes = {
+                type: 'text',
+                placeholder: this.placeholder
+            };
+        } else {
+            attributes = {
+                contenteditable: true
+            };
+        }
+
+        return createElement(this.tag, {
+            attrs: attributes,
+            ref: 'autoNumericElement',
+            on: {
+                keydown: this.setUserInteraction,
+                paste: this.setUserInteraction,
+                wheel: this.setUserInteraction,
+                drop: this.setUserInteraction,
+
+                keyup: this.resetUserInteraction,
+                blur: this.resetUserInteraction,
+
+                'autoNumeric:rawValueModified': this.updateVModel
+            }
+        });
+    },
+
+
     props: {
         value: {
             type: Number,
@@ -312,6 +345,12 @@ exports.default = {
         placeholder: {
             type: String,
             required: false
+        },
+
+        tag: {
+            type: String,
+            required: false,
+            default: 'input'
         }
     },
 
@@ -338,7 +377,7 @@ exports.default = {
             options = this.manageOptionElement(this.options);
         }
 
-        this.anElement = new _AutoNumeric2.default(this.$refs.autoNumericInput, options);
+        this.anElement = new _AutoNumeric2.default(this.$refs.autoNumericElement, options);
         if (this.value !== null && this.value !== '') {
             this.anElement.set(this.value);
 
@@ -396,7 +435,6 @@ exports.default = {
             }
         }
     }
-
 };
 
 /***/ }),
@@ -839,29 +877,6 @@ module.exports = function(it){
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_43__;
-
-/***/ }),
-/* 44 */
-/***/ (function(module, exports) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('input', {
-    ref: "autoNumericInput",
-    attrs: {
-      "type": "text",
-      "placeholder": _vm.placeholder
-    },
-    on: {
-      "keydown": _vm.setUserInteraction,
-      "paste": _vm.setUserInteraction,
-      "wheel": _vm.setUserInteraction,
-      "drop": _vm.setUserInteraction,
-      "keyup": _vm.resetUserInteraction,
-      "blur": _vm.resetUserInteraction,
-      "autoNumeric:rawValueModified": _vm.updateVModel
-    }
-  })
-},staticRenderFns: []}
 
 /***/ })
 /******/ ])["default"];

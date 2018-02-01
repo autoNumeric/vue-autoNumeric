@@ -1,5 +1,8 @@
 ## Changelog for vue-autoNumeric
 
+### 1.0.5
++ Fix issue #2 Allow the component to generate any supported Html element instead of only `<input>`
+
 ### 1.0.4
 + Fix the component size issue which bundled the whole `AutoNumeric` library
 + Update the documentation with how to install the component, depending if the AutoNumeric library should be bundled or not
