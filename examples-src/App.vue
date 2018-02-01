@@ -86,6 +86,16 @@
 								v-model="anModel"
 						/>
 					</div>
+
+					<div :class="boxClasses" :style="boxStyle">
+						<div :class="labelClasses">The `id` and `name` passed as props are added onto the generated element</div>
+						<vue-autonumeric
+								:options="'euro'"
+								id="thisGoesOnTheAnDomElement"
+								name="andThisIsTheName"
+								v-model="autoNumericModel"
+						/>
+					</div>
 				</div>
 			</div>
 		</div>
