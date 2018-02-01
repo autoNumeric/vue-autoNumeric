@@ -23,27 +23,27 @@
 					</a>
 					<div :class="boxClasses" :style="boxStyle">
 						<div :class="labelClasses">Default vue-autonumeric</div>
-						<vue-autonumeric :options="''" v-model="autoNumericModel"></vue-autonumeric>
+						<vue-autonumeric :options="''" v-model="autoNumericModel"/>
 					</div>
 
 					<div :class="boxClasses" :style="boxStyle">
 						<div :class="labelClasses">With the <code>'euro'</code> option</div>
-						<vue-autonumeric :options="'euro'" v-model="autoNumericModel"></vue-autonumeric>
+						<vue-autonumeric :options="'euro'" v-model="autoNumericModel"/>
 					</div>
 
 					<div :class="boxClasses" :style="boxStyle">
 						<div :class="labelClasses">With the <code>'dollar'</code> option</div>
-						<vue-autonumeric :options="'dollar'" v-model="autoNumericModel"></vue-autonumeric>
+						<vue-autonumeric :options="'dollar'" v-model="autoNumericModel"/>
 					</div>
 
 					<div :class="boxClasses" :style="boxStyle">
 						<div :class="labelClasses">With the <code>'integer'</code> option</div>
-						<vue-autonumeric :options="'integer'" v-model="autoNumericModel"></vue-autonumeric>
+						<vue-autonumeric :options="'integer'" v-model="autoNumericModel"/>
 					</div>
 
 					<div :class="boxClasses" :style="boxStyle">
 						<div :class="labelClasses">With the <code>'integerPos'</code> option</div>
-						<vue-autonumeric :options="'integerPos'" v-model="autoNumericModel"></vue-autonumeric>
+						<vue-autonumeric :options="'integerPos'" v-model="autoNumericModel"/>
 					</div>
 
 					<div :class="boxClasses" :style="boxStyle">
@@ -52,7 +52,7 @@
 								:options="'French'"
 								:placeholder="'Enter € here'"
 								v-model="autoNumericModel"
-						></vue-autonumeric>
+						/>
 					</div>
 
 					<div :class="boxClasses" :style="boxStyle">
@@ -60,7 +60,7 @@
 						<vue-autonumeric
 								:options="'NorthAmerican'"
 								v-model="autoNumericModel"
-						></vue-autonumeric>
+						/>
 					</div>
 
 					<div :class="boxClasses" :style="boxStyle">
@@ -76,7 +76,7 @@
 								    digitGroupSeparator : '.'
 								}"
 								v-model="autoNumericModel"
-						></vue-autonumeric>
+						/>
 					</div>
 
 					<div :class="boxClasses" :style="boxStyle" ref="parentListener">
@@ -84,7 +84,7 @@
 						<vue-autonumeric
 								:options="'euro'"
 								v-model="anModel"
-						></vue-autonumeric>
+						/>
 					</div>
 				</div>
 			</div>
@@ -148,7 +148,7 @@
     };
 </script>
 
-<style lang="scss" rel="stylesheet/scss">
+<style lang="scss">
 	$transitionShortDuration : 0.3s;
 
 	html, body {
