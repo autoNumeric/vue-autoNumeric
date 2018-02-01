@@ -39,7 +39,7 @@
     "components"
   ],
   "dependencies": {
-    "autonumeric": "^4.1.0-beta.16"
+    "autonumeric": "^4.1.0-beta.24"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.7",

@@ -2,7 +2,8 @@
 	<div id="app">
 		<div class="fixed top-0 w-100 z-1 flex-none flex flex-row items-center pv3 ph4 white headerToolbar">
 			<div class="flex-fill">
-				<a :href="'https://github.com/autoNumeric/vue-autoNumeric/releases/tag/v'+version" class="white no-underline underline-hover">vue-autoNumeric {{version}}</a>
+				<a :href="`https://github.com/autoNumeric/vue-autoNumeric/releases/tag/v${version}`" class="white no-underline underline-hover">vue-autoNumeric v{{ version }}</a>
+				<span class="with">with <a :href="`https://github.com/autoNumeric/autoNumeric/releases/tag/v${autoNumericVersion}`" class="white no-underline underline-hover">autoNumeric {{ autoNumericVersion }}</a></span>
 			</div>
 			<div class="flex-none">
 				<a href="https://github.com/autoNumeric/vue-autoNumeric" rel="noopener" target="_blank" title="View on Github">
@@ -77,6 +78,14 @@
 								v-model="autoNumericModel"
 						></vue-autonumeric>
 					</div>
+
+					<div :class="boxClasses" :style="boxStyle" ref="parentListener">
+						<div :class="labelClasses">The custom events are bubbling up to the parent</div>
+						<vue-autonumeric
+								:options="'euro'"
+								v-model="anModel"
+						></vue-autonumeric>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -96,7 +105,18 @@
         data() {
             return {
                 autoNumericModel : 221456.72, // Default value for the examples
+                anModel          : 42.01,
             };
+        },
+
+        mounted() {
+            this.$refs.parentListener.addEventListener('autoNumeric:rawValueModified', e => {
+                console.log(`autoNumeric:rawValueModified event detected`, e); //DEBUG
+            });
+
+            this.$refs.parentListener.addEventListener('autoNumeric:formatted', e => {
+                console.log(`autoNumeric:formatted event detected`, e); //DEBUG
+            });
         },
 
         computed  : {
@@ -119,6 +139,10 @@
 
             labelClasses() {
                 return 'mb4 f6 fw6 dark-gray';
+            },
+
+            autoNumericVersion() {
+                return `v${AutoNumeric.version()}`;
             },
         },
     };
@@ -151,6 +175,12 @@
 		flex       : 1 1;
 		min-width  : 0;
 		min-height : 0;
+	}
+
+	.with {
+		font-size   : 0.7rem;
+		color       : #BCE1FF;
+		margin-left : 1rem;
 	}
 
 	.lh-1 {
