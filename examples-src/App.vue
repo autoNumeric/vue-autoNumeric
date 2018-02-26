@@ -3,7 +3,7 @@
 		<div class="fixed top-0 w-100 z-1 flex-none flex flex-row items-center pv3 ph4 white headerToolbar">
 			<div class="flex-fill">
 				<a :href="`https://github.com/autoNumeric/vue-autoNumeric/releases/tag/v${version}`" class="white no-underline underline-hover">vue-autoNumeric v{{ version }}</a>
-				<span class="with">with <a :href="`https://github.com/autoNumeric/autoNumeric/releases/tag/v${autoNumericVersion}`" class="white no-underline underline-hover">autoNumeric {{ autoNumericVersion }}</a></span>
+				<span class="with">with <a :href="`https://github.com/autoNumeric/autoNumeric/releases/tag/${autoNumericVersion}`" class="white no-underline underline-hover">autoNumeric {{ autoNumericVersion }}</a></span>
 			</div>
 			<div class="flex-none">
 				<a href="https://github.com/autoNumeric/vue-autoNumeric" rel="noopener" target="_blank" title="View on Github">
@@ -114,6 +114,15 @@
 								v-model="autoNumericModel"
 						/>
 					</div>
+
+					<div :class="boxClasses" :style="boxStyle">
+						<div :class="labelClasses">The `options` attribute can be modified <i>on the fly</i>. Click <span class="repoLink" @click="optionsToggle = !optionsToggle">here</span> to toggle it.</div>
+						<vue-autonumeric
+								:options="options"
+								placeholder="This is the placeholder"
+								v-model="autoNumericModel"
+						/>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -132,8 +141,9 @@
 
         data() {
             return {
-                autoNumericModel : 221456.72, // Default value for the examples
-                anModel          : 42.01,
+                autoNumericModel: 221456.72, // Default value for the examples
+                anModel         : 42.01,
+                optionsToggle   : true,
             };
         },
 
@@ -172,12 +182,22 @@
             autoNumericVersion() {
                 return `v${AutoNumeric.version()}`;
             },
+
+            options() {
+                if (this.optionsToggle) {
+                    return 'euro';
+                }
+
+                return 'dollar';
+            },
         },
     };
 </script>
 
 <style lang="scss">
 	$transitionShortDuration : 0.3s;
+	$linkColor     : #0094ff;
+	$linkColorHover: #0068B7;
 
 	html, body {
 		font-family : 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -196,7 +216,7 @@
 	}
 
 	.headerToolbar {
-		background-color: #0094ff;
+		background-color: $linkColor;
 	}
 
 	.flex-fill {
@@ -246,11 +266,12 @@
 
 	.repoLink {
 		text-decoration: none;
-		color          : #0094ff;
+		color          : $linkColor;
+		cursor         : pointer;
 
 		&:hover {
 			text-decoration: underline;
-			color          : #0068B7;
+			color          : $linkColorHover;
 		}
 	}
 </style>
