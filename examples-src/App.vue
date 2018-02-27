@@ -123,6 +123,15 @@
 								v-model="autoNumericModel"
 						/>
 					</div>
+
+					<div :class="boxClasses" :style="boxStyle">
+						<div :class="labelClasses">The `options` attribute can be modified <i>on the fly</i>. Click <span class="repoLink" @click="options2Toggle = !options2Toggle">here</span> to toggle it.</div>
+						<vue-autonumeric
+								:options="options2"
+								placeholder="This is the placeholder"
+								v-model="autoNumericModel"
+						/>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -144,6 +153,7 @@
                 autoNumericModel: 221456.72, // Default value for the examples
                 anModel         : 42.01,
                 optionsToggle   : true,
+                options2Toggle  : true,
             };
         },
 
@@ -189,6 +199,14 @@
                 }
 
                 return ['dollar', { decimalPlaces: 0 }];
+            },
+
+            options2() {
+                if (this.options2Toggle) {
+                    return 'euro';
+                }
+
+                return ['dollar', { decimalPlaces: 5 }];
             },
         },
     };

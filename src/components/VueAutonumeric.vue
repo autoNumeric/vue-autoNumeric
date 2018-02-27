@@ -1,8 +1,8 @@
 <!--
               vue-autonumeric
 
-@version      1.0.6
-@date         2018-02-27 UTC 00:45
+@version      1.0.7
+@date         2018-02-27 UTC 02:22
 
 @author       Alexandre Bonneau
 @copyright    2018 © Alexandre Bonneau <alexandre.bonneau@linuxfr.eu>
@@ -270,8 +270,11 @@ OTHER DEALINGS IN THE SOFTWARE.
             options(newValue, oldValue) {
                 if (JSON.stringify(newValue) !== JSON.stringify(oldValue)) { //TODO Find a better way (without external libraries) to compare the two objects
                     if (this.resetOnOptions) {
+                        // Note; instead of using `this.anElement.options.reset();` directly, we need to keep track of the rawValue precision
+                        const decimalPlacesRawValue = this.anElement.getSettings().decimalPlacesRawValue;
+                        const optionsToReset = Object.assign({}, AutoNumeric.getDefaultConfig(), { decimalPlacesRawValue });
                         // This is needed when using predefined options that do not override previously used options
-                        this.anElement.options.reset();
+                        this.anElement.update(optionsToReset);
                     }
 
                     // Compare the new and old option, and only update if they are different

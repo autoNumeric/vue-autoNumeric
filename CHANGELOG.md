@@ -1,5 +1,9 @@
 ## Changelog for vue-autoNumeric
 
+### 1.0.7
++ Fix issue #9 Modifying the `options` will always lose the decimal places precision after `2` places
+  + This happens since `resetOnOptions` temporarily resets the configuration to the default one, which set the `decimalPlaces` option to `2`.
+
 ### 1.0.6
 + Fix issue #8 Add a new `resetOnOptions` props so that updating the `options` one first reset to the default options
 + Add a `resetOnOptions` props set the `true` by default so that updating the `options` prop first call `.options.reset()`
