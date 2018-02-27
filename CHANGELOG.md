@@ -1,5 +1,11 @@
 ## Changelog for vue-autoNumeric
 
+### 1.0.6
++ Fix issue #8 Add a new `resetOnOptions` props so that updating the `options` one first reset to the default options
++ Add a `resetOnOptions` props set the `true` by default so that updating the `options` prop first call `.options.reset()`
+  + This is useful when using predefined option names that do not declare all the options. For instance when switching from `'integer'` to `'euro'`, the `decimalPlaces` was not set from `0` to `2` and you had to first update to the default configuration.
+  + Now by default all options update will reset to the default options first. This can be avoided by setting `resetOnOptions` to false before changing the `options` value.
+
 ### 1.0.5
 + Fix issue #2 Allow the component to generate any supported Html element instead of only `<input>`
 

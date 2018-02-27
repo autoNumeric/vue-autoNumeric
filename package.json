@@ -1,6 +1,6 @@
 {
   "name": "vue-autonumeric",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "An AutoNumeric wrapper for Vue.js",
   "author": "Alexandre Bonneau <alexandre.bonneau@linuxfr.eu>",
   "license": "MIT",
@@ -39,7 +39,7 @@
     "components"
   ],
   "dependencies": {
-    "autonumeric": "^4.1.0-beta.24"
+    "autonumeric": "^4.2.3"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.7",

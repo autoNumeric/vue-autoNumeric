@@ -1,5 +1,5 @@
 /**
- * vue-autonumeric v1.0.5 (https://github.com/autoNumeric/vue-autoNumeric)
+ * vue-autonumeric v1.0.6 (https://github.com/autoNumeric/vue-autoNumeric)
  * © 2018 Alexandre Bonneau <alexandre.bonneau@linuxfr.eu>
  * Released under the MIT License.
  */
@@ -342,6 +342,12 @@ exports.default = {
             }
         },
 
+        resetOnOptions: {
+            type: Boolean,
+            required: false,
+            default: true
+        },
+
         placeholder: {
             type: String,
             required: false
@@ -431,6 +437,10 @@ exports.default = {
         },
         options: function options(newValue, oldValue) {
             if ((0, _stringify2.default)(newValue) !== (0, _stringify2.default)(oldValue)) {
+                if (this.resetOnOptions) {
+                    this.anElement.options.reset();
+                }
+
                 this.anElement.update(newValue);
             }
         }

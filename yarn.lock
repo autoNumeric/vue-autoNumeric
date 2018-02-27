@@ -228,9 +228,9 @@ asynckit@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
 
-autonumeric@^4.1.0-beta.24:
-  version "4.1.0-beta.24"
-  resolved "https://registry.yarnpkg.com/autonumeric/-/autonumeric-4.1.0-beta.24.tgz#1ea2994663fb6339687265386c25d61e31b1997f"
+autonumeric@^4.2.3:
+  version "4.2.3"
+  resolved "https://registry.yarnpkg.com/autonumeric/-/autonumeric-4.2.3.tgz#451e9a3620b2bbb075b25b567a9f76c08521aee1"
 
 autoprefixer@^6.3.1, autoprefixer@^6.7.7:
   version "6.7.7"

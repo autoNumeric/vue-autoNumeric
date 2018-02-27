@@ -133,7 +133,7 @@
     import VueAutonumeric from '../src/components/VueAutonumeric.vue';
 
     export default {
-        name      : 'app',
+        name: 'app',
 
         components: {
             VueAutonumeric,
@@ -188,7 +188,7 @@
                     return 'euro';
                 }
 
-                return 'dollar';
+                return ['dollar', { decimalPlaces: 0 }];
             },
         },
     };

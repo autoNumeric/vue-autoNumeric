@@ -1,8 +1,8 @@
 <!--
               vue-autonumeric
 
-@version      1.0.5
-@date         2018-02-01 UTC 22:00
+@version      1.0.6
+@date         2018-02-27 UTC 00:45
 
 @author       Alexandre Bonneau
 @copyright    2018 © Alexandre Bonneau <alexandre.bonneau@linuxfr.eu>
@@ -118,6 +118,12 @@ OTHER DEALINGS IN THE SOFTWARE.
                 default() {
                     return defaultOptions;
                 },
+            },
+
+            resetOnOptions: {
+                type    : Boolean,
+                required: false,
+                default : true,
             },
 
             placeholder: { // The <input> placeholder text. This is only used if the generated element is an <input>.
@@ -263,6 +269,11 @@ OTHER DEALINGS IN THE SOFTWARE.
 
             options(newValue, oldValue) {
                 if (JSON.stringify(newValue) !== JSON.stringify(oldValue)) { //TODO Find a better way (without external libraries) to compare the two objects
+                    if (this.resetOnOptions) {
+                        // This is needed when using predefined options that do not override previously used options
+                        this.anElement.options.reset();
+                    }
+
                     // Compare the new and old option, and only update if they are different
                     this.anElement.update(newValue);
                 }
