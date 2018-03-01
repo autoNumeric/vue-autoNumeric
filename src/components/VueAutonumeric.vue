@@ -1,8 +1,8 @@
 <!--
               vue-autonumeric
 
-@version      1.0.7
-@date         2018-02-27 UTC 02:22
+@version      1.1.0
+@date         2018-03-01 UTC 02:50
 
 @author       Alexandre Bonneau
 @copyright    2018 © Alexandre Bonneau <alexandre.bonneau@linuxfr.eu>
@@ -120,6 +120,10 @@ OTHER DEALINGS IN THE SOFTWARE.
                 },
             },
 
+            /**
+             * If set to `true`, whenever the `options` prop changes, the AutoNumeric settings are first reset to the AutoNumeric defaults options.
+             * This is set to `true` by default so that it allows for users to pass predefined option names and be sure that no previous settings would be kept, resulting in an unused result (ie. when switching from 'integer' to 'euro', the decimalPlaces would still be `0`).
+             */
             resetOnOptions: {
                 type    : Boolean,
                 required: false,
@@ -179,6 +183,23 @@ OTHER DEALINGS IN THE SOFTWARE.
                 this.updateVModel(); //FIXME Send the `event.timeStamp` info here
                 this.resetUserInteraction(); // Do not forget to set back the user interaction tracking variable to `false`!
             }
+        },
+
+        computed: {
+            /**
+             * This computed property is created in order to be able to watch the changes to both `value` and `options` at the same time.
+             * This is important since if both are changed at the same time, `options` needs to be updated *before* `value` (the order here is important, and is respected in the `anInfo` watcher).
+             *
+             * cf. https://github.com/vuejs/vue/issues/7723#issuecomment-369344926
+             *
+             * @returns {Object}
+             */
+            anInfo() {
+                return {
+                    value  : this.value,
+                    options: this.options,
+                };
+            },
         },
 
         methods: {
@@ -248,40 +269,54 @@ OTHER DEALINGS IN THE SOFTWARE.
          * currently edited by the user.
          */
         watch: {
-            //FIXME If multiple components share the same v-model, this means 'set' here will be called as many times as there is an input that is not being used my a human interaction ; find a way to prevent that
-            value(newValue, oldValue) {
-                try { // I need to catch any errors here, otherwise if 'set()' fails, `this.userInteraction` is not set back to `false`
-                    if (!this.userInteraction) {
-                        // Make sure this is only called when the value is set by an external script, and not from a user input
-                        // The modification comes from a script, so we need to reformat the new value `newValue`
-                        if (newValue !== oldValue) {
-                            // Compare the 'newValue' with the current 'oldValue' so we do not `set` it again if it's not needed
-                            this.anElement.set(newValue);
+            anInfo(newValue, oldValue) {
+                // First, check if the options have changed, if that's the case, update those first
+                if (oldValue.options && JSON.stringify(newValue.options) !== JSON.stringify(oldValue.options)) { //TODO Find a better way (without external libraries) to compare the two options objects. Also, the comparison is moot when comparing 'euro' with the actual euro object.
+                    // Compare the new and old options, and only update if they are different
+                    let optionsToUse;
+                    if (this.resetOnOptions) { // This is needed when using predefined options that do not override previously used options
+                        if (Array.isArray(newValue.options)) { // Manage the new options if they are passed in an array
+                            newValue.options = AutoNumeric.mergeOptions(newValue.options);
                         }
-                    }
-                } catch (error) {
-                    console.error(error);
-                }
 
-                // After each watch call, reset the 'manually modified' tracking state to `false`
-                this.resetUserInteraction();
-            },
-
-            options(newValue, oldValue) {
-                if (JSON.stringify(newValue) !== JSON.stringify(oldValue)) { //TODO Find a better way (without external libraries) to compare the two objects
-                    if (this.resetOnOptions) {
                         // Note; instead of using `this.anElement.options.reset();` directly, we need to keep track of the rawValue precision
                         const decimalPlacesRawValue = this.anElement.getSettings().decimalPlacesRawValue;
-                        const optionsToReset = Object.assign({}, AutoNumeric.getDefaultConfig(), { decimalPlacesRawValue });
-                        // This is needed when using predefined options that do not override previously used options
-                        this.anElement.update(optionsToReset);
+                        const newOptions            = AutoNumeric._getOptionObject(newValue.options);
+                        if (newOptions.decimalPlaces && newOptions.decimalPlaces > decimalPlacesRawValue) {
+                            // Do not set the existing `decimalPlacesRawValue` option if it's lower than the new `decimalPlaces` one
+                            optionsToUse = Object.assign({}, AutoNumeric.getDefaultConfig(), newOptions);
+                        } else {
+                            optionsToUse = Object.assign({}, AutoNumeric.getDefaultConfig(), { decimalPlacesRawValue }, newOptions);
+                        }
+                    } else {
+                        optionsToUse = newValue.options;
                     }
 
-                    // Compare the new and old option, and only update if they are different
-                    this.anElement.update(newValue);
+                    this.anElement.update(optionsToUse);
                 }
-                //XXX This can be tested by using `$vm0.$props.options = { currencySymbol : '#' };` in the console
+
+                // Then check if the value has changed, if it's defined
+                if (newValue.value !== void(0)) {
+                    try { // I need to catch any errors here, otherwise if 'set()' fails, `this.userInteraction` is not set back to `false`
+                        if (!this.userInteraction) {
+                            // Make sure this is only called when the value is set by an external script, and not from a user input
+                            // The modification comes from a script, so we need to reformat the new value `newValue`
+                            if (newValue.value !== oldValue.value) {
+                                // Compare the 'newValue' with the current 'oldValue' so we do not `set` it again if it's not needed
+                                //XXX If multiple components share the same v-model, this means 'set' here will be called as many times as there is an input that is not being used by a human interaction
+                                this.anElement.set(newValue.value);
+                            }
+                        }
+                    } catch (error) {
+                        console.error(error);
+                    }
+
+                    // After each watch call, reset the 'manually modified' tracking state to `false`
+                    this.resetUserInteraction();
+                }
             },
+
+            //XXX This can be tested by using `$vm0.$props.options = { currencySymbol : '#' };` in the console
         },
     };
 </script>

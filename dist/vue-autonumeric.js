@@ -1,5 +1,5 @@
 /**
- * vue-autonumeric v1.0.7 (https://github.com/autoNumeric/vue-autoNumeric)
+ * vue-autonumeric v1.1.0 (https://github.com/autoNumeric/vue-autoNumeric)
  * © 2018 Alexandre Bonneau <alexandre.bonneau@linuxfr.eu>
  * Released under the MIT License.
  */
@@ -393,6 +393,15 @@ exports.default = {
     },
 
 
+    computed: {
+        anInfo: function anInfo() {
+            return {
+                value: this.value,
+                options: this.options
+            };
+        }
+    },
+
     methods: {
         updateVModel: function updateVModel(event) {
             if (this.anElement !== null) {
@@ -422,29 +431,40 @@ exports.default = {
     },
 
     watch: {
-        value: function value(newValue, oldValue) {
-            try {
-                if (!this.userInteraction) {
-                    if (newValue !== oldValue) {
-                        this.anElement.set(newValue);
+        anInfo: function anInfo(newValue, oldValue) {
+            if (oldValue.options && (0, _stringify2.default)(newValue.options) !== (0, _stringify2.default)(oldValue.options)) {
+                var optionsToUse = void 0;
+                if (this.resetOnOptions) {
+                    if (Array.isArray(newValue.options)) {
+                        newValue.options = _AutoNumeric2.default.mergeOptions(newValue.options);
                     }
+
+                    var decimalPlacesRawValue = this.anElement.getSettings().decimalPlacesRawValue;
+                    var newOptions = _AutoNumeric2.default._getOptionObject(newValue.options);
+                    if (newOptions.decimalPlaces && newOptions.decimalPlaces > decimalPlacesRawValue) {
+                        optionsToUse = (0, _assign2.default)({}, _AutoNumeric2.default.getDefaultConfig(), newOptions);
+                    } else {
+                        optionsToUse = (0, _assign2.default)({}, _AutoNumeric2.default.getDefaultConfig(), { decimalPlacesRawValue: decimalPlacesRawValue }, newOptions);
+                    }
+                } else {
+                    optionsToUse = newValue.options;
                 }
-            } catch (error) {
-                console.error(error);
+
+                this.anElement.update(optionsToUse);
             }
 
-            this.resetUserInteraction();
-        },
-        options: function options(newValue, oldValue) {
-            if ((0, _stringify2.default)(newValue) !== (0, _stringify2.default)(oldValue)) {
-                if (this.resetOnOptions) {
-                    var decimalPlacesRawValue = this.anElement.getSettings().decimalPlacesRawValue;
-                    var optionsToReset = (0, _assign2.default)({}, _AutoNumeric2.default.getDefaultConfig(), { decimalPlacesRawValue: decimalPlacesRawValue });
-
-                    this.anElement.update(optionsToReset);
+            if (newValue.value !== void 0) {
+                try {
+                    if (!this.userInteraction) {
+                        if (newValue.value !== oldValue.value) {
+                            this.anElement.set(newValue.value);
+                        }
+                    }
+                } catch (error) {
+                    console.error(error);
                 }
 
-                this.anElement.update(newValue);
+                this.resetUserInteraction();
             }
         }
     }

@@ -125,12 +125,40 @@
 					</div>
 
 					<div :class="boxClasses" :style="boxStyle">
-						<div :class="labelClasses">The `options` attribute can be modified <i>on the fly</i>. Click <span class="repoLink" @click="options2Toggle = !options2Toggle">here</span> to toggle it.</div>
+						<div :class="labelClasses">The `decimalPlaces` option is saved between options updates in order to keep the correct precision. Click <span class="repoLink" @click="options2Toggle = !options2Toggle">here</span> to toggle between the states.</div>
 						<vue-autonumeric
 								:options="options2"
 								placeholder="This is the placeholder"
 								v-model="autoNumericModel"
 						/>
+					</div>
+
+					<div :class="boxClasses" :style="boxStyle">
+						<div :class="labelClasses">Modify the option to 'percentage3EUdec' then set a small value by clicking <span class="repoLink" @click="setOptionsAndValue">here</span>. This fails since we do not use a single object to update both options and value at the same time, while the v-model is shared with components having different options.</div>
+						<vue-autonumeric
+								:options="options3"
+								placeholder="This is the placeholder"
+								v-model="autoNumericModel"
+						/>
+					</div>
+
+					<div :class="boxClasses" :style="boxStyle">
+						<h5 :class="labelClasses">Real world use case when using an object to change both the value and options</h5>
+						<div :class="labelClasses">
+							<span class='repoLink reset' @click="reset">Reset to the default value</span>
+							<span class='repoLink fail' @click="setBoth">Set both the value and options at once</span>
+						</div>
+						<vue-autonumeric
+								:options="obj.options"
+								v-model="obj.val"
+						/>
+					</div>
+
+					<div :class="boxClasses" :style="boxStyle">
+						<div :class="labelClasses">Linked vue-autonumeric elements; if you change one, the other is updated...</div>
+						<vue-autonumeric :options="''" v-model="anValue"/>
+						<div :class="labelClasses">...even if it uses different options (here <code>'euro'</code>)</div>
+						<vue-autonumeric :options="'euro'" v-model="anValue"/>
 					</div>
 				</div>
 			</div>
@@ -154,6 +182,13 @@
                 anModel         : 42.01,
                 optionsToggle   : true,
                 options2Toggle  : true,
+                options3        : 'euro',
+
+                obj    : {
+                    val    : 123456.78,
+                    options: 'euro',
+                },
+                anValue: 123.457,
             };
         },
 
@@ -207,6 +242,30 @@
                 }
 
                 return ['dollar', { decimalPlaces: 5 }];
+            },
+        },
+
+        methods: {
+            setOptionsAndValue() {
+                //XXX This way of changing the value/option *may* not work correctly if another vue-autonumeric component uses the same v-model with *different* options
+                //XXX This is due to the fact that vue-autonumeric detect a value change, and `set()` it since it does not come from a user interaction. However if one of the vue-autonumeric component has a `decimalPlaces` option set to `2`, and another set to `5`, then the first will drop the additional decimal places when using `set()`..which in turn will make the other component aware of the value change, which will then use the cropped value as well.
+                this.options3         = 'percentageEU3dec';
+                this.autoNumericModel = 0.00123456;
+                // this.$nextTick(() => {
+                //     this.autoNumericModel = 0.00123456;
+                // });
+            },
+
+            setBoth() {
+                this.obj = {
+                    options : 'percentageEU3dec',
+                    val     : 0.00123456,
+                };
+            },
+
+            reset() {
+                this.obj.val = 123456.78;
+                this.obj.options = AutoNumeric.getDefaultConfig();
             },
         },
     };
