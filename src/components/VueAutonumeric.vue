@@ -1,8 +1,8 @@
 <!--
               vue-autonumeric
 
-@version      1.1.0
-@date         2018-03-01 UTC 02:50
+@version      1.1.1
+@date         2018-03-21 UTC 21:00
 
 @author       Alexandre Bonneau
 @copyright    2018 © Alexandre Bonneau <alexandre.bonneau@linuxfr.eu>
@@ -38,7 +38,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 -->
 
 <script type="text/babel">
-    import AutoNumeric from 'AutoNumeric';
+    import AutoNumeric from 'autonumeric';
 
     // Custom default autoNumeric option can be set here to override the default autoNumeric ones
     const defaultOptions = {};

@@ -134,7 +134,7 @@
 					</div>
 
 					<div :class="boxClasses" :style="boxStyle">
-						<div :class="labelClasses">Modify the option to 'percentage3EUdec' then set a small value by clicking <span class="repoLink" @click="setOptionsAndValue">here</span>. This fails since we do not use a single object to update both options and value at the same time, while the v-model is shared with components having different options.</div>
+						<div :class="labelClasses">Modify the option to 'percentageEU3dec' then set a small value by clicking <span class="repoLink" @click="setOptionsAndValue">here</span>. This fails since we do not use a single object to update both options and value at the same time, while the v-model is shared with components having different options.</div>
 						<vue-autonumeric
 								:options="options3"
 								placeholder="This is the placeholder"

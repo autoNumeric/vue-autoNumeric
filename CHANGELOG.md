@@ -1,5 +1,10 @@
 ## Changelog for vue-autoNumeric
 
+### 1.1.1
++ Fixes #1 Create the unit tests
+  Add Jest for running the unit tests on the component
++ Fix the case of the AutoNumeric import name in the webpack configuration
+
 ### 1.1.0
 + Fix issue #10 When using an object to modify both the `:value` and `:options` props, the options is not always modified before the value
 + Fix the issue where updating the `options` to new ones with a higher `decimalPlacesRawValue` loses the additional decimal places
