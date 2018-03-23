@@ -1,5 +1,5 @@
 /**
- * vue-autonumeric v1.2.1 (https://github.com/autoNumeric/vue-autoNumeric)
+ * vue-autonumeric v1.2.2 (https://github.com/autoNumeric/vue-autoNumeric)
  * © 2018 Alexandre Bonneau <alexandre.bonneau@linuxfr.eu>
  * Released under the MIT License.
  */
