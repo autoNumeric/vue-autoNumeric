@@ -123,7 +123,7 @@
 					</div>
 
 					<div :class="boxClasses" :style="boxStyle">
-						<div :class="labelClasses">The `id` and `name` passed as props are added onto the generated element</div>
+						<div :class="labelClasses">The <code>id</code> and <code>name</code> passed as props are added onto the generated element</div>
 
 						<div class="inputAndRawValue">
 							<vue-autonumeric
@@ -137,7 +137,7 @@
 					</div>
 
 					<div :class="boxClasses" :style="boxStyle">
-						<div :class="labelClasses">Non-input element with the `contenteditable` attribute</div>
+						<div :class="labelClasses">Non-input element with the <code>contenteditable</code> attribute</div>
 
 						<div class="inputAndRawValue">
 							<vue-autonumeric
@@ -150,7 +150,7 @@
 					</div>
 
 					<div :class="boxClasses" :style="boxStyle">
-						<div :class="labelClasses">The `placeholder` attribute is passed as a prop too</div>
+						<div :class="labelClasses">The <code>placeholder</code> attribute is passed as a prop too</div>
 
 						<div class="inputAndRawValue">
 							<vue-autonumeric
@@ -163,7 +163,7 @@
 					</div>
 
 					<div :class="boxClasses" :style="boxStyle">
-						<div :class="labelClasses">The `options` attribute can be modified <i>on the fly</i>. Click <span class="repoLink" @click="optionsToggle = !optionsToggle">here</span> to toggle it.</div>
+						<div :class="labelClasses">The <code>options</code> attribute can be modified <i>on the fly</i>. Click <span class="repoLink" @click="optionsToggle = !optionsToggle">here</span> to toggle it.</div>
 
 						<div class="inputAndRawValue">
 							<vue-autonumeric
@@ -176,7 +176,7 @@
 					</div>
 
 					<div :class="boxClasses" :style="boxStyle">
-						<div :class="labelClasses">The `decimalPlaces` option is <strong>NOT</strong> saved between options updates. Click <span class="repoLink" @click="options2Toggle = !options2Toggle">here</span> to toggle between the states.<br>In order to keep the correct precision, you need to specify the `decimalPlacesRawValue` option for both states.</div>
+						<div :class="labelClasses">The <code>decimalPlaces</code> option is <strong>NOT</strong> saved between options updates. Click <span class="repoLink" @click="options2Toggle = !options2Toggle">here</span> to toggle between the states.<br>In order to keep the correct precision, you need to specify the <code>decimalPlacesRawValue</code> option for both states.</div>
 
 						<div class="inputAndRawValue">
 							<vue-autonumeric
@@ -189,7 +189,7 @@
 					</div>
 
 					<div :class="boxClasses" :style="boxStyle">
-						<div :class="labelClasses">Modify the option to 'percentageEU3dec' then set a small value by clicking <span class="repoLink" @click="setOptionsAndValue">here</span>. This <strong>works</strong> even though we do not use a single object to update both options and value at the same time, because the v-model is <strong>not</strong> shared with components having different options.</div>
+						<div :class="labelClasses">Modify the option to <code>'percentageEU3dec'</code> then set a small value by clicking <span class="repoLink" @click="setOptionsAndValue">here</span>. This <strong>works</strong> even though we do not use a single object to update both options and value at the same time, because the v-model is <strong>not</strong> shared with components having different options.</div>
 
 						<div class="inputAndRawValue">
 							<vue-autonumeric
@@ -202,7 +202,7 @@
 					</div>
 
 					<div :class="boxClasses" :style="boxStyle">
-						<div :class="labelClasses">Modify the option to 'percentageEU3dec' then set a small value by clicking <span class="repoLink" @click="setOptionsAndValueFail">here</span>. This <strong>fails</strong> since we do not use a single object to update both options and value at the same time, while the v-model is shared with components having different options.</div>
+						<div :class="labelClasses">Modify the option to <code>'percentageEU3dec'</code> then set a small value by clicking <span class="repoLink" @click="setOptionsAndValueFail">here</span>. This <strong>fails</strong> since we do not use a single object to update both options and value at the same time, while the v-model is shared with components having different options.</div>
 						<div class="inputAndRawValue">
 							<vue-autonumeric
 								:options="options3"
@@ -254,7 +254,16 @@
 							/>
 							<div class="rawValue">{{ emptyValue }}</div>
 							<button class="controls" @click="clearValue">Clear the value with `clear()`</button>
-							<button class="controls" @click="setToEmptyString">Set to the empty string</button>
+							<button class="controls" @click="setToEmptyString">Set to the empty string directly</button>
+							<button class="controls" @click="setToEmptyStringVModel">Set to the empty string with Vue</button>
+						</div>
+					</div>
+
+					<div :class="boxClasses" :style="boxStyle">
+						<div :class="labelClasses">Vue-autonumeric that tracks external changes.<br>Try using <code>ext.value = 42</code> in the console.</div>
+						<div class="inputAndRawValue">
+							<vue-autonumeric id="ext" :options="{ watchExternalChanges: true }" v-model="externalTracker"/>
+							<div class="rawValue">{{ externalTracker }}</div>
 						</div>
 					</div>
 				</div>
@@ -280,6 +289,7 @@
                 autoNumericModel3: 221226.44,
                 anModel          : 42.01,
                 emptyValue       : '',
+                externalTracker  : 1222114.66,
                 optionsToggle    : true,
                 options2Toggle   : true,
                 options3         : 'euro',
@@ -380,6 +390,10 @@
 
             setToEmptyString() {
                 AutoNumeric.getAutoNumericElement('#inputToEmpty').set('');
+            },
+
+            setToEmptyStringVModel() {
+	            this.emptyValue = '';
             },
         },
     };
