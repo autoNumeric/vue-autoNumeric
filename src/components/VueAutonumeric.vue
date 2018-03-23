@@ -1,8 +1,8 @@
 <!--
               vue-autonumeric
 
-@version      1.2.0
-@date         2018-03-27 UTC 21:20
+@version      1.2.1
+@date         2018-03-28 UTC 21:20
 
 @author       Alexandre Bonneau
 @copyright    2018 © Alexandre Bonneau <alexandre.bonneau@linuxfr.eu>

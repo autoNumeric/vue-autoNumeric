@@ -17,3 +17,5 @@ examples/js
 *.njsproj
 *.sln
 
+# Testing
+cypress/screenshots

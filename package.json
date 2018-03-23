@@ -1,6 +1,6 @@
 {
   "name": "vue-autonumeric",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "An AutoNumeric wrapper for Vue.js",
   "author": "Alexandre Bonneau <alexandre.bonneau@linuxfr.eu>",
   "license": "MIT",
@@ -11,8 +11,13 @@
     "build:examples": "webpack --config build/webpack.examples.js",
     "build": "npm run build:debug && npm run build:release && npm run build:examples",
     "clean": "rimraf ./examples/js/examples.bundle.js",
-    "lint": "eslint --ext .js,.vue src examples-src build",
-    "lintfix": "eslint --fix --ext .js,.vue src examples-src build"
+    "lint": "eslint --ext .js,.vue src examples-src test/unit build",
+    "lintfix": "eslint --fix --ext .js,.vue src examples-src test/unit build",
+    "unit": "jest --config test/unit/jest.conf.js --coverage",
+    "watch": "jest --config test/unit/jest.conf.js --watchAll",
+    "test": "npm run unit",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run"
   },
   "main": "dist/vue-autonumeric.min.js",
   "readmeFilename": "README.md",
@@ -42,6 +47,8 @@
     "autonumeric": "^4.2.9"
   },
   "devDependencies": {
+    "@cypress/webpack-preprocessor": "^2.0.1",
+    "@vue/test-utils": "^1.0.0-beta.13",
     "autoprefixer": "^6.7.7",
     "babel-core": "^6.0.0",
     "babel-eslint": "^8.0.0",
@@ -52,10 +59,13 @@
     "babel-preset-stage-2": "^6.24.1",
     "cross-env": "^3.0.0",
     "css-loader": "^0.25.0",
+    "cypress": "^2.1.0",
+    "cypress-vue-unit-test": "^0.0.0-development",
     "deep-assign": "^2.0.0",
     "eslint": "^4.7.1",
     "eslint-friendly-formatter": "^3.0.0",
     "eslint-loader": "^1.9.0",
+    "eslint-plugin-cypress": "^2.0.1",
     "eslint-plugin-html": "^3.2.2",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^3.0.1",
