@@ -241,6 +241,22 @@
 							<div class="rawValue">{{ anValue }}</div>
 						</div>
 					</div>
+
+					<div :class="boxClasses" :style="boxStyle">
+						<div :class="labelClasses">Initialization with an empty value</div>
+
+						<div class="inputAndRawValue">
+							<vue-autonumeric
+									id="inputToEmpty"
+									options="euro"
+									v-model="emptyValue"
+									:placeholder="'Enter your value here'"
+							/>
+							<div class="rawValue">{{ emptyValue }}</div>
+							<button class="controls" @click="clearValue">Clear the value with `clear()`</button>
+							<button class="controls" @click="setToEmptyString">Set to the empty string</button>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -263,6 +279,7 @@
                 autoNumericModel2: 12468.642,
                 autoNumericModel3: 221226.44,
                 anModel          : 42.01,
+                emptyValue       : '',
                 optionsToggle    : true,
                 options2Toggle   : true,
                 options3         : 'euro',
@@ -356,6 +373,14 @@
                 this.obj.val = 123456.78;
                 this.obj.options = AutoNumeric.getDefaultConfig();
             },
+
+            clearValue() {
+                AutoNumeric.getAutoNumericElement('#inputToEmpty').clear(true);
+            },
+
+            setToEmptyString() {
+                AutoNumeric.getAutoNumericElement('#inputToEmpty').set('');
+            },
         },
     };
 </script>
@@ -401,6 +426,7 @@
 		line-height : 1;
 	}
 
+	$boxShadow       : 0 1px 5px rgba(0, 0, 0, .2), 0 2px 2px rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .12);
 	input {
 		background-color : white;
 		border           : 1px solid #B1B1B1;
@@ -409,7 +435,6 @@
 		border-radius    : 4px;
 		transition       : all $transitionShortDuration ease;
 
-		$boxShadow       : 0 1px 5px rgba(0, 0, 0, .2), 0 2px 2px rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .12);
 		&:hover {
 			box-shadow : $boxShadow;
 		}
@@ -453,5 +478,27 @@
 		margin-left      : 2rem;
 		border-radius    : 3px;
 		font-size        : 0.9rem;
+	}
+
+	.controls {
+		background-color : $linkColor;
+		border           : 1px solid $linkColorHover;
+		color            : white;
+		padding          : 0.5rem;
+		border-radius    : 4px;
+		transition       : all $transitionShortDuration ease;
+		margin-left      : 2rem;
+		cursor           : pointer;
+
+		&:hover {
+			box-shadow       : $boxShadow;
+			background-color : dodgerblue;
+			border-color     : darkblue;
+		}
+
+		&:focus {
+			border-color : #6B819F;
+			box-shadow   : $boxShadow;
+		}
 	}
 </style>
