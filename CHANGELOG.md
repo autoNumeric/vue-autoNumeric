@@ -1,5 +1,9 @@
 ## Changelog for vue-autoNumeric
 
+### 1.2.1
++ Fixes #13 Not working on mobile devices / userInteraction is never set to true on touch devices (iOS / Android)
++ Replace the user interaction tracking system with a simple one where the component AutoNumeric `rawValue` is compared to the watched new `value`. 
+
 ### 1.2.0
 + Simplify how the `rawValue` decimal places are set
   + In `v1.1.*`, whenever the options were changed, the number of decimal places for the `rawValue` was calculated based of the previous options, and not only the new given options.

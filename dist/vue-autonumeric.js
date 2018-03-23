@@ -1,5 +1,5 @@
 /**
- * vue-autonumeric v1.2.0 (https://github.com/autoNumeric/vue-autoNumeric)
+ * vue-autonumeric v1.2.1 (https://github.com/autoNumeric/vue-autoNumeric)
  * © 2018 Alexandre Bonneau <alexandre.bonneau@linuxfr.eu>
  * Released under the MIT License.
  */
@@ -336,14 +336,6 @@ exports.default = {
             attrs: attributes,
             ref: 'autoNumericElement',
             on: {
-                keydown: this.setUserInteraction,
-                paste: this.setUserInteraction,
-                wheel: this.setUserInteraction,
-                drop: this.setUserInteraction,
-
-                keyup: this.resetUserInteraction,
-                blur: this.resetUserInteraction,
-
                 'autoNumeric:rawValueModified': this.updateVModel
             }
         });
@@ -384,9 +376,7 @@ exports.default = {
 
     data: function data() {
         return {
-            anElement: null,
-
-            userInteraction: false
+            anElement: null
         };
     },
     mounted: function mounted() {
@@ -410,7 +400,6 @@ exports.default = {
             this.anElement.set(this.value);
 
             this.updateVModel();
-            this.resetUserInteraction();
         }
     },
 
@@ -430,18 +419,12 @@ exports.default = {
                 this.$emit('input', this.anElement.getNumber(), event);
             }
         },
-        setUserInteraction: function setUserInteraction() {
-            this.userInteraction = true;
-        },
-        resetUserInteraction: function resetUserInteraction() {
-            this.userInteraction = false;
-        },
         manageOptionElement: function manageOptionElement(optionElement) {
             var options = void 0;
             if (typeof optionElement === 'string' || optionElement instanceof String) {
                 options = _autonumeric2.default.getPredefinedOptions()[optionElement];
                 if (options === void 0 || options === null) {
-                    console.warn('The given pre-defined options [' + optionElement + '] is not recognized by autoNumeric.\nSwitching back to the default options.');
+                    console.warn('The given pre-defined options [' + optionElement + '] is not recognized by AutoNumeric.\nSwitching back to the default options.');
                     options = defaultOptions;
                 }
             } else {
@@ -469,18 +452,8 @@ exports.default = {
                 this.anElement.update(optionsToUse);
             }
 
-            if (newValue.value !== void 0) {
-                try {
-                    if (!this.userInteraction) {
-                        if (newValue.value !== oldValue.value) {
-                            this.anElement.set(newValue.value);
-                        }
-                    }
-                } catch (error) {
-                    console.error(error);
-                }
-
-                this.resetUserInteraction();
+            if (newValue.value !== void 0 && this.anElement.getNumber() !== newValue.value && newValue.value !== oldValue.value) {
+                this.anElement.set(newValue.value);
             }
         }
     }

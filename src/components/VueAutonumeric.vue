@@ -1,8 +1,8 @@
 <!--
               vue-autonumeric
 
-@version      1.2.0
-@date         2018-03-27 UTC 21:20
+@version      1.2.1
+@date         2018-05-08 UTC 01:50
 
 @author       Alexandre Bonneau
 @copyright    2018 © Alexandre Bonneau <alexandre.bonneau@linuxfr.eu>
@@ -93,14 +93,6 @@ OTHER DEALINGS IN THE SOFTWARE.
                 attrs: attributes,
                 ref  : 'autoNumericElement',
                 on   : {
-                    keydown: this.setUserInteraction,
-                    paste  : this.setUserInteraction,
-                    wheel  : this.setUserInteraction,
-                    drop   : this.setUserInteraction,
-
-                    keyup: this.resetUserInteraction,
-                    blur : this.resetUserInteraction,
-
                     'autoNumeric:rawValueModified': this.updateVModel,
                 },
             });
@@ -145,11 +137,7 @@ OTHER DEALINGS IN THE SOFTWARE.
         data() {
             return {
                 // Store the reference to the AutoNumeric object
-                anElement      : null,
-
-                // Keep tracks if a change is initiated by the user (via the keyup/paste/wheel/drop events),
-                // or by another script (useful to know when to update the `v-model` when the value change from an outside script)
-                userInteraction: false,
+                anElement: null,
             };
         },
 
@@ -181,7 +169,6 @@ OTHER DEALINGS IN THE SOFTWARE.
                 this.anElement.set(this.value);
                 // The `v-model` must be updated with that default value on startup
                 this.updateVModel(); //FIXME Send the `event.timeStamp` info here
-                this.resetUserInteraction(); // Do not forget to set back the user interaction tracking variable to `false`!
             }
         },
 
@@ -215,21 +202,6 @@ OTHER DEALINGS IN THE SOFTWARE.
             },
 
             /**
-             * The user is currently editing the value manually.
-             * This function keep track of that state.
-             */
-            setUserInteraction() {
-                this.userInteraction = true;
-            },
-
-            /**
-             * Reset the user interaction indicator to its default state.
-             */
-            resetUserInteraction() {
-                this.userInteraction = false;
-            },
-
-            /**
              * Return an option object, whatever the type of `optionElement`.
              * If `optionElement` is as string, then we retrieve the predefined option object, if it's an object, we use it as is.
              *
@@ -242,7 +214,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                     options = AutoNumeric.getPredefinedOptions()[optionElement];
                     if (options === void(0) || options === null) {
                         // If the given `optionElement` does not exist, we switch back to the default options
-                        console.warn(`The given pre-defined options [${optionElement}] is not recognized by autoNumeric.\nSwitching back to the default options.`);
+                        console.warn(`The given pre-defined options [${optionElement}] is not recognized by AutoNumeric.\nSwitching back to the default options.`);
                         options = defaultOptions; // Default value
                     }
                 } else { // A `settings` object
@@ -256,17 +228,25 @@ OTHER DEALINGS IN THE SOFTWARE.
         /*
          * Here we need to be extra careful when using `watch`, in order to
          * prevent chain reactions when 'linked' v-model starts to change each
-         * other when only one is modified, including the very one the user
-         * interacts with.
+         * other when only one is manually modified, including the very one
+         * the user interacts with.
          *
-         * In order to prevent this kind of behavior, I keep track if the
-         * change comes from a user interaction (which means
-         * `this.userInteraction` is set to `true` on `keyup`, `paste`, `wheel`
-         * and `drop`, or `false` if the v-model is modified by a script.
+         * In order to prevent infinite watch loops when different `vue-autonumeric`
+         * components are using the same v-model, we check if the element
+         * `rawValue` is different from the new value, and only set it if that's
+         * the case.
+         * This way we do not need to keep track if the element is being manually
+         * used by the user, or only programmatically.
          *
          * The new value detected by `watch` is then only `set` if it comes
          * from a script, effectively preventing updating the input that is
          * currently edited by the user.
+         *
+         * This can be tested by using `$vm0.$props.options = { currencySymbol : '#' };` in the console
+         *
+         * Note: If multiple components share the same v-model, this means `set()`
+         * will be called as many times as there is an input that is not being
+         * used by a human interaction.
          */
         watch: {
             anInfo(newValue, oldValue) {
@@ -288,27 +268,15 @@ OTHER DEALINGS IN THE SOFTWARE.
                 }
 
                 // 2) Then check if the value has changed, if it's defined
-                if (newValue.value !== void(0)) {
-                    try { // I need to catch any errors here, otherwise if 'set()' fails, `this.userInteraction` is not set back to `false`
-                        if (!this.userInteraction) {
-                            // Make sure this is only called when the value is set by an external script, and not from a user input
-                            // The modification comes from a script, so we need to reformat the new value `newValue`
-                            if (newValue.value !== oldValue.value) {
-                                // Compare the 'newValue' with the current 'oldValue' so we do not `set` it again if it's not needed
-                                //XXX If multiple components share the same v-model, this means 'set' here will be called as many times as there is an input that is not being used by a human interaction
-                                this.anElement.set(newValue.value);
-                            }
-                        }
-                    } catch (error) {
-                        console.error(error);
-                    }
-
-                    // After each watch call, reset the 'manually modified' tracking state to `false`
-                    this.resetUserInteraction();
+                if (newValue.value !== void(0) &&
+                    // Make sure this is only called when the value is set by an external script, and not from a user input
+                    this.anElement.getNumber() !== newValue.value &&
+                    // Compare the 'newValue' with the current 'oldValue' so we do not `set` it again if it's not needed
+                    newValue.value !== oldValue.value) {
+                    // The modification comes from a script, so we need to reformat the new value `newValue.value`
+                    this.anElement.set(newValue.value);
                 }
             },
-
-            //XXX This can be tested by using `$vm0.$props.options = { currencySymbol : '#' };` in the console
         },
     };
 </script>
