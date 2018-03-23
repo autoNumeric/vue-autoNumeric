@@ -1,0 +1,10 @@
+.idea
+build
+cypress
+test
+.editorconfig
+cypress.json
+npm-debug.log*
+yarn-error.log*
+selenium-debug.log
+yarn.lock
