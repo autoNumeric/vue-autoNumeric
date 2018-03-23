@@ -71,6 +71,6 @@ module.exports = {
     externals: {
         // This prevent bundling the AutoNumeric library inside the vue-autonumeric component
         // cf. https://webpack.js.org/configuration/externals/
-        autonumeric: 'AutoNumeric',
+        autonumeric: 'autonumeric',
     },
 };

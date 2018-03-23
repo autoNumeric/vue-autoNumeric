@@ -1,8 +1,8 @@
 <!--
               vue-autonumeric
 
-@version      1.2.2
-@date         2018-05-08 UTC 02:15
+@version      1.2.3
+@date         2018-05-09 UTC 21:30
 
 @author       Alexandre Bonneau
 @copyright    2018 © Alexandre Bonneau <alexandre.bonneau@linuxfr.eu>
@@ -100,8 +100,10 @@ OTHER DEALINGS IN THE SOFTWARE.
 
         props: {
             value: {
-                type    : Number,
                 required: false,
+                validator(val) {
+                    return typeof val === 'number' || val === '' || val === null;
+                },
             },
 
             options: {
