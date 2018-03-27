@@ -16,6 +16,8 @@ vue-autoNumeric wraps the awesome AutoNumeric library and generate an `<input>` 
 
 **Checkout the [demo](https://codepen.io/AnotherLinuxUser/pen/pWgOrZ?editors=1010)!**
 
+Alternatively you can check the [examples](#Examples) directly in your browser to see how to integrate the component with Vue and AutoNumeric.
+
 ### Installation
 
 ```sh
@@ -46,7 +48,7 @@ module.exports = {
         filename: './dist/bundle.js'
     },
     externals: {
-        AutoNumeric: 'AutoNumeric',
+        autonumeric: 'AutoNumeric',
     },
 };
 ```
@@ -185,7 +187,17 @@ The official AutoNumeric [documentation](http://autonumeric.org/#/guide) is usin
 <br>
 An editable live example is available [on Codepen](https://codepen.io/AnotherLinuxUser/pen/pWgOrZ?editors=1010).
 
-Moreover, you can check the [shipped examples](https://github.com/autoNumeric/vue-autoNumeric/blob/master/examples/index.html) in your browser, and study its [source here](https://github.com/autoNumeric/vue-autoNumeric/tree/master/examples-src).
+#### Examples
+
+You can also check the [shipped examples](https://github.com/autoNumeric/vue-autoNumeric/blob/master/examples/index.html) in your browser, and study their [source here](https://github.com/autoNumeric/vue-autoNumeric/tree/master/examples-src).<br>To do so, first compile the example using:
+```bash
+# this will build the component *and* the examples
+yarn build 
+```
+Then check the resulting html file in your browser using:
+```bash
+firefox ./examples/index.html # or `chrome`
+```
 
 ### Requirements
 
