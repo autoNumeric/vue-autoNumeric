@@ -16,7 +16,7 @@ vue-autoNumeric wraps the awesome AutoNumeric library and generate an `<input>` 
 
 **Checkout the [demo](https://codepen.io/AnotherLinuxUser/pen/pWgOrZ?editors=1010)!**
 
-Alternatively you can check the [examples](#Examples) directly in your browser to see how to integrate the component with Vue and AutoNumeric.
+Alternatively you can check the [examples](#examples) directly in your browser to see how to integrate the component with Vue and AutoNumeric.
 
 ### Installation
 
