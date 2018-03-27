@@ -1,8 +1,8 @@
 <!--
               vue-autonumeric
 
-@version      1.1.0
-@date         2018-03-01 UTC 02:50
+@version      1.2.0
+@date         2018-03-27 UTC 21:20
 
 @author       Alexandre Bonneau
 @copyright    2018 © Alexandre Bonneau <alexandre.bonneau@linuxfr.eu>
@@ -38,7 +38,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 -->
 
 <script type="text/babel">
-    import AutoNumeric from 'AutoNumeric';
+    import AutoNumeric from 'autonumeric';
 
     // Custom default autoNumeric option can be set here to override the default autoNumeric ones
     const defaultOptions = {};
@@ -122,7 +122,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 
             /**
              * If set to `true`, whenever the `options` prop changes, the AutoNumeric settings are first reset to the AutoNumeric defaults options.
-             * This is set to `true` by default so that it allows for users to pass predefined option names and be sure that no previous settings would be kept, resulting in an unused result (ie. when switching from 'integer' to 'euro', the decimalPlaces would still be `0`).
+             * This is set to `true` by default so that it allows for users to pass predefined option names and be sure that no previous settings would be kept, resulting in an unusual result (ie. when switching from 'integer' to 'euro', the decimalPlaces would still be `0`).
              */
             resetOnOptions: {
                 type    : Boolean,
@@ -270,32 +270,24 @@ OTHER DEALINGS IN THE SOFTWARE.
          */
         watch: {
             anInfo(newValue, oldValue) {
-                // First, check if the options have changed, if that's the case, update those first
+                // 1) First, check if the options have changed, if that's the case, update those first
+                // Compare the new and old options, and only update if they are different
                 if (oldValue.options && JSON.stringify(newValue.options) !== JSON.stringify(oldValue.options)) { //TODO Find a better way (without external libraries) to compare the two options objects. Also, the comparison is moot when comparing 'euro' with the actual euro object.
-                    // Compare the new and old options, and only update if they are different
-                    let optionsToUse;
                     if (this.resetOnOptions) { // This is needed when using predefined options that do not override previously used options
-                        if (Array.isArray(newValue.options)) { // Manage the new options if they are passed in an array
-                            newValue.options = AutoNumeric.mergeOptions(newValue.options);
-                        }
+                        this.anElement.options.reset();
+                    }
 
-                        // Note; instead of using `this.anElement.options.reset();` directly, we need to keep track of the rawValue precision
-                        const decimalPlacesRawValue = this.anElement.getSettings().decimalPlacesRawValue;
-                        const newOptions            = AutoNumeric._getOptionObject(newValue.options);
-                        if (newOptions.decimalPlaces && newOptions.decimalPlaces > decimalPlacesRawValue) {
-                            // Do not set the existing `decimalPlacesRawValue` option if it's lower than the new `decimalPlaces` one
-                            optionsToUse = Object.assign({}, AutoNumeric.getDefaultConfig(), newOptions);
-                        } else {
-                            optionsToUse = Object.assign({}, AutoNumeric.getDefaultConfig(), { decimalPlacesRawValue }, newOptions);
-                        }
+                    let optionsToUse;
+                    if (Array.isArray(newValue.options)) { // Manage the new options if they are passed in an array
+                        optionsToUse = AutoNumeric.mergeOptions(newValue.options);
                     } else {
-                        optionsToUse = newValue.options;
+                        optionsToUse = AutoNumeric._getOptionObject(newValue.options);
                     }
 
                     this.anElement.update(optionsToUse);
                 }
 
-                // Then check if the value has changed, if it's defined
+                // 2) Then check if the value has changed, if it's defined
                 if (newValue.value !== void(0)) {
                     try { // I need to catch any errors here, otherwise if 'set()' fails, `this.userInteraction` is not set back to `false`
                         if (!this.userInteraction) {

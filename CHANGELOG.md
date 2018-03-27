@@ -1,12 +1,23 @@
 ## Changelog for vue-autoNumeric
 
+### 1.2.0
++ Simplify how the `rawValue` decimal places are set
+  + In `v1.1.*`, whenever the options were changed, the number of decimal places for the `rawValue` was calculated based of the previous options, and not only the new given options.
+  + This was useful when two vue-autonumeric components shared the same v-model, but different options that have different values for the `rawValue` decimal places count.
+  + For instance if one of the `vue-autonumeric` component had a `decimalPlaces` option set to `2`, and another set to `5`, then when the user modified the value of one of those components, vue-autonumeric would detect a programmatic value change in the other component (since it did not come from a user interaction), and it would then use `set()` to set the new value.
+  + The first component would drop the additional decimal places when using `set()`...which in turn would make the other components aware of that new value change, and the second component would then use that new cropped value as well.
+  + However, this special decimal places management is complexifying the code quite a bit, and is not 100% effective since some use cases were difficult, if even possible, to manage.
+  + This `rawValueDecimalPlaces` *hack* is now reverted to a more sane and legible code.
+  + From now on, the user will have to explicitly declare the `rawValueDecimalPlaces` value when updating the options, if he does not want to lose the precision when switching options.
++ Fix the case of the AutoNumeric import name in the webpack configuration
+
 ### 1.1.0
 + Fix issue #10 When using an object to modify both the `:value` and `:options` props, the options is not always modified before the value
 + Fix the issue where updating the `options` to new ones with a higher `decimalPlacesRawValue` loses the additional decimal places
 + Now allows to update the `options` by passing an array of options (with objects and predefined option names)
 + When the `options` and `value` are both set at the same time, `vue-autonumeric` now always update the `options` first, before setting the `value`.
   + This allows to use objects with the value and a predefined option name to modify the vue-autonumeric component.
-  + Note: There is a know bug yet; if you use multiple `vue-autonumeric` component sharing the same `v-model` but *different* options, changing the value/option *may* not work correctly.
+  + Note: There is a known bug; if you use multiple `vue-autonumeric` component sharing the same `v-model` but *different* options, changing the value/option *may* not work correctly.
     + This is due to the fact that when vue-autonumeric detects a value change, it `set()` it since it does not come from a user interaction.
     + However if one of the `vue-autonumeric` component has a `decimalPlaces` option set to `2`, and another set to `5`, then the first component will drop the additional decimal places when using `set()`...which in turn will make the other component aware of that new value change, and the second component will then use that new cropped value as well.
 

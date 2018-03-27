@@ -23,44 +23,71 @@
 					</a>
 					<div :class="boxClasses" :style="boxStyle">
 						<div :class="labelClasses">Default vue-autonumeric</div>
-						<vue-autonumeric :options="''" v-model="autoNumericModel"/>
+						<div class="inputAndRawValue">
+							<vue-autonumeric :options="''" v-model="autoNumericModel"/>
+							<div class="rawValue">{{ autoNumericModel }}</div>
+						</div>
 					</div>
 
 					<div :class="boxClasses" :style="boxStyle">
 						<div :class="labelClasses">With the <code>'euro'</code> option</div>
-						<vue-autonumeric :options="'euro'" v-model="autoNumericModel"/>
+
+						<div class="inputAndRawValue">
+							<vue-autonumeric :options="'euro'" v-model="autoNumericModel"/>
+							<div class="rawValue">{{ autoNumericModel }}</div>
+						</div>
 					</div>
 
 					<div :class="boxClasses" :style="boxStyle">
 						<div :class="labelClasses">With the <code>'dollar'</code> option</div>
-						<vue-autonumeric :options="'dollar'" v-model="autoNumericModel"/>
+
+						<div class="inputAndRawValue">
+							<vue-autonumeric :options="'dollar'" v-model="autoNumericModel"/>
+							<div class="rawValue">{{ autoNumericModel }}</div>
+						</div>
 					</div>
 
 					<div :class="boxClasses" :style="boxStyle">
 						<div :class="labelClasses">With the <code>'integer'</code> option</div>
-						<vue-autonumeric :options="'integer'" v-model="autoNumericModel"/>
+
+						<div class="inputAndRawValue">
+							<vue-autonumeric :options="'integer'" v-model="autoNumericModel"/>
+							<div class="rawValue">{{ autoNumericModel }}</div>
+						</div>
 					</div>
 
 					<div :class="boxClasses" :style="boxStyle">
 						<div :class="labelClasses">With the <code>'integerPos'</code> option</div>
-						<vue-autonumeric :options="'integerPos'" v-model="autoNumericModel"/>
+
+						<div class="inputAndRawValue">
+							<vue-autonumeric :options="'integerPos'" v-model="autoNumericModel"/>
+							<div class="rawValue">{{ autoNumericModel }}</div>
+						</div>
 					</div>
 
 					<div :class="boxClasses" :style="boxStyle">
 						<div :class="labelClasses">With the <code>'French'</code> predefined language and a placeholder</div>
-						<vue-autonumeric
-								:options="'French'"
-								:placeholder="'Enter € here'"
-								v-model="autoNumericModel"
-						/>
+
+						<div class="inputAndRawValue">
+							<vue-autonumeric
+									:options="'French'"
+									:placeholder="'Enter € here'"
+									v-model="autoNumericModel"
+							/>
+							<div class="rawValue">{{ autoNumericModel }}</div>
+						</div>
 					</div>
 
 					<div :class="boxClasses" :style="boxStyle">
 						<div :class="labelClasses">With the <code>'NorthAmerican'</code> predefined language</div>
-						<vue-autonumeric
-								:options="'NorthAmerican'"
-								v-model="autoNumericModel"
-						/>
+
+						<div class="inputAndRawValue">
+							<vue-autonumeric
+									:options="'NorthAmerican'"
+									v-model="autoNumericModel"
+							/>
+							<div class="rawValue">{{ autoNumericModel }}</div>
+						</div>
 					</div>
 
 					<div :class="boxClasses" :style="boxStyle">
@@ -69,77 +96,121 @@
     decimalCharacter : ',',
     digitGroupSeparator : '.'
 }</code></div>
-						<vue-autonumeric
+
+						<div class="inputAndRawValue">
+							<vue-autonumeric
 								:options="{
 						            currencySymbol : 'Ω',
 								    decimalCharacter : ',',
 								    digitGroupSeparator : '.'
 								}"
 								v-model="autoNumericModel"
-						/>
+							/>
+							<div class="rawValue">{{ autoNumericModel }}</div>
+						</div>
 					</div>
 
 					<div :class="boxClasses" :style="boxStyle" ref="parentListener">
 						<div :class="labelClasses">The custom events are bubbling up to the parent</div>
-						<vue-autonumeric
+
+						<div class="inputAndRawValue">
+							<vue-autonumeric
 								:options="'euro'"
 								v-model="anModel"
-						/>
+							/>
+							<div class="rawValue">{{ anModel }}</div>
+						</div>
 					</div>
 
 					<div :class="boxClasses" :style="boxStyle">
 						<div :class="labelClasses">The `id` and `name` passed as props are added onto the generated element</div>
-						<vue-autonumeric
+
+						<div class="inputAndRawValue">
+							<vue-autonumeric
 								:options="'euro'"
 								id="thisGoesOnTheAnDomElement"
 								name="andThisIsTheName"
 								v-model="autoNumericModel"
-						/>
+							/>
+							<div class="rawValue">{{ autoNumericModel }}</div>
+						</div>
 					</div>
 
 					<div :class="boxClasses" :style="boxStyle">
 						<div :class="labelClasses">Non-input element with the `contenteditable` attribute</div>
-						<vue-autonumeric
+
+						<div class="inputAndRawValue">
+							<vue-autonumeric
 								options="euro"
 								v-model="autoNumericModel"
 								tag="p"
-						/>
+							/>
+							<div class="rawValue">{{ autoNumericModel }}</div>
+						</div>
 					</div>
 
 					<div :class="boxClasses" :style="boxStyle">
 						<div :class="labelClasses">The `placeholder` attribute is passed as a prop too</div>
-						<vue-autonumeric
+
+						<div class="inputAndRawValue">
+							<vue-autonumeric
 								:options="'euro'"
 								placeholder="This is the placeholder"
 								v-model="autoNumericModel"
-						/>
+							/>
+							<div class="rawValue">{{ autoNumericModel }}</div>
+						</div>
 					</div>
 
 					<div :class="boxClasses" :style="boxStyle">
 						<div :class="labelClasses">The `options` attribute can be modified <i>on the fly</i>. Click <span class="repoLink" @click="optionsToggle = !optionsToggle">here</span> to toggle it.</div>
-						<vue-autonumeric
+
+						<div class="inputAndRawValue">
+							<vue-autonumeric
 								:options="options"
 								placeholder="This is the placeholder"
 								v-model="autoNumericModel"
-						/>
+							/>
+							<div class="rawValue">{{ autoNumericModel }}</div>
+						</div>
 					</div>
 
 					<div :class="boxClasses" :style="boxStyle">
-						<div :class="labelClasses">The `decimalPlaces` option is saved between options updates in order to keep the correct precision. Click <span class="repoLink" @click="options2Toggle = !options2Toggle">here</span> to toggle between the states.</div>
-						<vue-autonumeric
+						<div :class="labelClasses">The `decimalPlaces` option is <strong>NOT</strong> saved between options updates. Click <span class="repoLink" @click="options2Toggle = !options2Toggle">here</span> to toggle between the states.<br>In order to keep the correct precision, you need to specify the `decimalPlacesRawValue` option for both states.</div>
+
+						<div class="inputAndRawValue">
+							<vue-autonumeric
 								:options="options2"
 								placeholder="This is the placeholder"
-								v-model="autoNumericModel"
-						/>
+								v-model="autoNumericModel2"
+							/>
+							<div class="rawValue">{{ autoNumericModel2 }}</div>
+						</div>
 					</div>
 
 					<div :class="boxClasses" :style="boxStyle">
-						<div :class="labelClasses">Modify the option to 'percentage3EUdec' then set a small value by clicking <span class="repoLink" @click="setOptionsAndValue">here</span>. This fails since we do not use a single object to update both options and value at the same time, while the v-model is shared with components having different options.</div>
-						<vue-autonumeric
+						<div :class="labelClasses">Modify the option to 'percentageEU3dec' then set a small value by clicking <span class="repoLink" @click="setOptionsAndValue">here</span>. This <strong>works</strong> even though we do not use a single object to update both options and value at the same time, because the v-model is <strong>not</strong> shared with components having different options.</div>
+
+						<div class="inputAndRawValue">
+							<vue-autonumeric
+									:options="options3b"
+									placeholder="This is the placeholder"
+									v-model="autoNumericModel3"
+							/>
+							<div class="rawValue">{{ autoNumericModel3 }}</div>
+						</div>
+					</div>
+
+					<div :class="boxClasses" :style="boxStyle">
+						<div :class="labelClasses">Modify the option to 'percentageEU3dec' then set a small value by clicking <span class="repoLink" @click="setOptionsAndValueFail">here</span>. This <strong>fails</strong> since we do not use a single object to update both options and value at the same time, while the v-model is shared with components having different options.</div>
+						<div class="inputAndRawValue">
+							<vue-autonumeric
 								:options="options3"
 								placeholder="This is the placeholder"
 								v-model="autoNumericModel"
-						/>
+							/>
+							<div class="rawValue">{{ autoNumericModel }}</div>
+						</div>
 					</div>
 
 					<div :class="boxClasses" :style="boxStyle">
@@ -148,17 +219,27 @@
 							<span class='repoLink reset' @click="reset">Reset to the default value</span>
 							<span class='repoLink fail' @click="setBoth">Set both the value and options at once</span>
 						</div>
-						<vue-autonumeric
+
+						<div class="inputAndRawValue">
+							<vue-autonumeric
 								:options="obj.options"
 								v-model="obj.val"
-						/>
+							/>
+							<div class="rawValue">{{ obj.val }}</div>
+						</div>
 					</div>
 
 					<div :class="boxClasses" :style="boxStyle">
 						<div :class="labelClasses">Linked vue-autonumeric elements; if you change one, the other is updated...</div>
-						<vue-autonumeric :options="''" v-model="anValue"/>
+						<div class="inputAndRawValue">
+							<vue-autonumeric :options="''" v-model="anValue"/>
+							<div class="rawValue">{{ anValue }}</div>
+						</div>
 						<div :class="labelClasses">...even if it uses different options (here <code>'euro'</code>)</div>
-						<vue-autonumeric :options="'euro'" v-model="anValue"/>
+							<div class="inputAndRawValue">
+							<vue-autonumeric :options="'euro'" v-model="anValue"/>
+							<div class="rawValue">{{ anValue }}</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -178,11 +259,14 @@
 
         data() {
             return {
-                autoNumericModel: 221456.72, // Default value for the examples
-                anModel         : 42.01,
-                optionsToggle   : true,
-                options2Toggle  : true,
-                options3        : 'euro',
+                autoNumericModel : 221456.72, // Default value for the examples
+                autoNumericModel2: 12468.642,
+                autoNumericModel3: 221226.44,
+                anModel          : 42.01,
+                optionsToggle    : true,
+                options2Toggle   : true,
+                options3         : 'euro',
+                options3b        : 'euro',
 
                 obj    : {
                     val    : 123456.78,
@@ -247,12 +331,17 @@
 
         methods: {
             setOptionsAndValue() {
+                this.options3b         = 'percentageEU3dec';
+                this.autoNumericModel3 = 0.00123456;
+            },
+
+            setOptionsAndValueFail() {
                 //XXX This way of changing the value/option *may* not work correctly if another vue-autonumeric component uses the same v-model with *different* options
                 //XXX This is due to the fact that vue-autonumeric detect a value change, and `set()` it since it does not come from a user interaction. However if one of the vue-autonumeric component has a `decimalPlaces` option set to `2`, and another set to `5`, then the first will drop the additional decimal places when using `set()`..which in turn will make the other component aware of the value change, which will then use the cropped value as well.
                 this.options3         = 'percentageEU3dec';
                 this.autoNumericModel = 0.00123456;
                 // this.$nextTick(() => {
-                //     this.autoNumericModel = 0.00123456;
+                //     this.autoNumericModel3 = 0.00123456;
                 // });
             },
 
@@ -350,5 +439,19 @@
 			text-decoration: underline;
 			color          : $linkColorHover;
 		}
+	}
+
+	.inputAndRawValue {
+		display : flex;
+	}
+
+	.rawValue {
+		font-family      : monospace;
+		background-color : #f3f3f3;
+		color            : #9C9C9C;
+		padding          : 0.6rem;
+		margin-left      : 2rem;
+		border-radius    : 3px;
+		font-size        : 0.9rem;
 	}
 </style>
