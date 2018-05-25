@@ -53,7 +53,7 @@ module.exports = {
 };
 ```
 
-#### ...or by importing it directly as a module
+#### ...or by importing it directly as an ES6 module
 
 You can choose to directly import the AutoNumeric library in your source code.<br>First, install the `autonumeric` dependency so that Webpack can find it using:
 
@@ -73,16 +73,12 @@ export default {
     components: {
         VueAutonumeric,
     },
-
-    data() {
-        return {
-            //
-        };
-    },
 }
 ```
 
-However, when doing that if you want to be able to bundle all the scripts together with Webpack, you'll need to define an alias for the `AutoNumeric` library in your Webpack config like so:
+However, when doing that if you want to be able to bundle all the scripts together with Webpack, you'll **need to define an alias for the `AutoNumeric` library in your Webpack config**, otherwise Webpack will complain about the npm package `autonumeric` case.
+
+The alias that you need to declare in your Webpack configuration:
 ```js
 module.exports = {
     entry  : './src/vueAutonumericTest.js',
@@ -91,7 +87,7 @@ module.exports = {
     },
     resolve: {
         alias: {
-            AutoNumeric: 'autonumeric/dist/autoNumeric.min',
+            AutoNumeric: 'node_modules/autonumeric/dist/autoNumeric.min',
         },
     },
 };

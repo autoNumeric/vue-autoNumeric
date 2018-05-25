@@ -331,9 +331,9 @@ atob@^2.0.0:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/atob/-/atob-2.0.3.tgz#19c7a760473774468f20b2d2d03372ad7d4cbf5d"
 
-autonumeric@^4.2.12:
-  version "4.2.12"
-  resolved "https://registry.yarnpkg.com/autonumeric/-/autonumeric-4.2.12.tgz#0d5cefc9ec36f0e625231462c64bed245b149f79"
+autonumeric@^4.2.13:
+  version "4.2.13"
+  resolved "https://registry.yarnpkg.com/autonumeric/-/autonumeric-4.2.13.tgz#29a1374fd16f91a60ba3d97fc74374a3d0057957"
 
 autoprefixer@^6.3.1, autoprefixer@^6.7.7:
   version "6.7.7"

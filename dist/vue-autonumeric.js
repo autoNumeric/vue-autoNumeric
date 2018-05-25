@@ -1,17 +1,17 @@
 /**
- * vue-autonumeric v1.2.3 (https://github.com/autoNumeric/vue-autoNumeric)
+ * vue-autonumeric v1.2.4 (https://github.com/autoNumeric/vue-autoNumeric)
  * © 2018 Alexandre Bonneau <alexandre.bonneau@linuxfr.eu>
  * Released under the MIT License.
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("autonumeric"));
+		module.exports = factory(require("AutoNumeric"));
 	else if(typeof define === 'function' && define.amd)
-		define("VueAutonumeric", ["autonumeric"], factory);
+		define("VueAutonumeric", ["AutoNumeric"], factory);
 	else if(typeof exports === 'object')
-		exports["VueAutonumeric"] = factory(require("autonumeric"));
+		exports["VueAutonumeric"] = factory(require("AutoNumeric"));
 	else
-		root["VueAutonumeric"] = factory(root["autonumeric"]);
+		root["VueAutonumeric"] = factory(root["AutoNumeric"]);
 })(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_43__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -306,9 +306,9 @@ var _assign = __webpack_require__(16);
 
 var _assign2 = _interopRequireDefault(_assign);
 
-var _autonumeric = __webpack_require__(43);
+var _autoNumeric = __webpack_require__(43);
 
-var _autonumeric2 = _interopRequireDefault(_autonumeric);
+var _autoNumeric2 = _interopRequireDefault(_autoNumeric);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -397,7 +397,7 @@ exports.default = {
             options = this.manageOptionElement(this.options);
         }
 
-        this.anElement = new _autonumeric2.default(this.$refs.autoNumericElement, options);
+        this.anElement = new _autoNumeric2.default(this.$refs.autoNumericElement, options);
         if (this.value !== null && this.value !== '') {
             this.anElement.set(this.value);
 
@@ -424,7 +424,7 @@ exports.default = {
         manageOptionElement: function manageOptionElement(optionElement) {
             var options = void 0;
             if (typeof optionElement === 'string' || optionElement instanceof String) {
-                options = _autonumeric2.default.getPredefinedOptions()[optionElement];
+                options = _autoNumeric2.default.getPredefinedOptions()[optionElement];
                 if (options === void 0 || options === null) {
                     console.warn('The given pre-defined options [' + optionElement + '] is not recognized by AutoNumeric.\nSwitching back to the default options.');
                     options = defaultOptions;
@@ -446,9 +446,9 @@ exports.default = {
 
                 var optionsToUse = void 0;
                 if (Array.isArray(newValue.options)) {
-                    optionsToUse = _autonumeric2.default.mergeOptions(newValue.options);
+                    optionsToUse = _autoNumeric2.default.mergeOptions(newValue.options);
                 } else {
-                    optionsToUse = _autonumeric2.default._getOptionObject(newValue.options);
+                    optionsToUse = _autoNumeric2.default._getOptionObject(newValue.options);
                 }
 
                 this.anElement.update(optionsToUse);

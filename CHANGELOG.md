@@ -1,5 +1,25 @@
 ## Changelog for vue-autoNumeric
 
+### 1.2.4
++ Fixes #18 Require of AutoNumeric is ES6 module and not the distribution version
++ Fix how using vue-autonumeric with a CDN did not work since the external library it searched was in lowercase.
++ Update the documentation about using `vue-autonumeric` in an ES6 module setup with Webpack
+
+Important note:
++ We need to use `<npmPath>: 'AutoNumeric'` in the `vue-autonumeric`'s webpack configuration since we want the user to be able to just use a CDN link to the AutoNumeric library and make sure `vue-autonumeric` will correctly use this name (since it's exported as `AutoNumeric`, with this case).
++ However if you are using `vue-autonumeric` in an ES6 module setup with a bundling tool (ie. Webpack), then you'll need to declare in your project an alias so that Webpack will know how to recognize the correct library name case.
+  + The alias configuration example for Webpack:
+```js
+resolve: {
+    extensions: ['.js', '.vue', '.json'],
+    alias     : {
+        '~'          : resolve('node_modules'),
+        '@'          : resolve('src'),
+        'AutoNumeric': resolve('node_modules/autonumeric/dist/autoNumeric.min'),
+    },
+},
+```
+
 ### 1.2.3
 + Fixes #15 Prop Validation Returns Error if Empty String
 + Fixes #16 build fails on linux
