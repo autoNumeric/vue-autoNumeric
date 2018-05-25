@@ -1,6 +1,6 @@
 {
   "name": "vue-autonumeric",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "An AutoNumeric wrapper for Vue.js",
   "author": "Alexandre Bonneau <alexandre.bonneau@linuxfr.eu>",
   "license": "MIT",

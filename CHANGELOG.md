@@ -1,5 +1,8 @@
 ## Changelog for vue-autoNumeric
 
+### 1.2.5
++ Fixes #14 The `readOnly` option is not respected for non-input tags (`contenteditable` is always set to `true`)
+
 ### 1.2.4
 + Fixes #18 Require of AutoNumeric is ES6 module and not the distribution version
 + Fix how using vue-autonumeric with a CDN did not work since the external library it searched was in lowercase.

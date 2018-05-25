@@ -1,5 +1,5 @@
 /**
- * vue-autonumeric v1.2.4 (https://github.com/autoNumeric/vue-autoNumeric)
+ * vue-autonumeric v1.2.5 (https://github.com/autoNumeric/vue-autoNumeric)
  * © 2018 Alexandre Bonneau <alexandre.bonneau@linuxfr.eu>
  * Released under the MIT License.
  */
@@ -328,7 +328,7 @@ exports.default = {
             };
         } else {
             attributes = {
-                contenteditable: true
+                contenteditable: this.hasContentEditable
             };
         }
 
@@ -378,26 +378,29 @@ exports.default = {
 
     data: function data() {
         return {
-            anElement: null
-        };
+            anElement: null,
+            initialOptions: null,
+            hasContentEditable: true };
     },
-    mounted: function mounted() {
+    created: function created() {
         var _this = this;
 
-        var options = void 0;
         if (Array.isArray(this.options)) {
             var optionObjects = {};
             this.options.forEach(function (optionElement) {
-                options = _this.manageOptionElement(optionElement);
-                optionObjects = (0, _assign2.default)(optionObjects, options);
+                _this.initialOptions = _this.manageOptionElement(optionElement);
+                optionObjects = (0, _assign2.default)(optionObjects, _this.initialOptions);
             });
 
-            options = optionObjects;
+            this.initialOptions = optionObjects;
         } else {
-            options = this.manageOptionElement(this.options);
+            this.initialOptions = this.manageOptionElement(this.options);
         }
 
-        this.anElement = new _autoNumeric2.default(this.$refs.autoNumericElement, options);
+        this.hasContentEditable = !this.initialOptions.readOnly;
+    },
+    mounted: function mounted() {
+        this.anElement = new _autoNumeric2.default(this.$refs.autoNumericElement, this.initialOptions);
         if (this.value !== null && this.value !== '') {
             this.anElement.set(this.value);
 

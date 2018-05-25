@@ -150,6 +150,19 @@
 					</div>
 
 					<div :class="boxClasses" :style="boxStyle">
+						<div :class="labelClasses">Non-input element in read-only mode</div>
+
+						<div class="inputAndRawValue">
+							<vue-autonumeric
+									:options="['euro', { readOnly : true, currencySymbol : ' Rp' }]"
+									v-model="autoNumericModel"
+									tag="p"
+							/>
+							<div class="rawValue">{{ autoNumericModel }}</div>
+						</div>
+					</div>
+
+					<div :class="boxClasses" :style="boxStyle">
 						<div :class="labelClasses">The <code>placeholder</code> attribute is passed as a prop too</div>
 
 						<div class="inputAndRawValue">

@@ -1,8 +1,8 @@
 <!--
               vue-autonumeric
 
-@version      1.2.4
-@date         2018-05-25 UTC 19:30
+@version      1.2.5
+@date         2018-05-25 UTC 19:50
 
 @author       Alexandre Bonneau
 @copyright    2018 © Alexandre Bonneau <alexandre.bonneau@linuxfr.eu>
@@ -85,7 +85,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                 };
             } else {
                 attributes = {
-                    contenteditable: true,
+                    contenteditable: this.hasContentEditable,
                 };
             }
 
@@ -139,11 +139,13 @@ OTHER DEALINGS IN THE SOFTWARE.
         data() {
             return {
                 // Store the reference to the AutoNumeric object
-                anElement: null,
+                anElement         : null,
+                initialOptions    : null, // Store the options that were first used when initializing the component
+                hasContentEditable: true, // Store if the element should be set as `contenteditable` on initialization
             };
         },
 
-        mounted() {
+        created() {
             // Manage the options
             /*
              * Currently, the allowed format for the `options` property are :
@@ -151,22 +153,26 @@ OTHER DEALINGS IN THE SOFTWARE.
              * - an object (the option object)
              * - an array of strings and/or objects
              */
-            let options;
             if (Array.isArray(this.options)) {
                 // This allows the user to use multiple options (strings or objects) in an array, and overwrite the previous one with the next option element ; this is useful to tune the wanted format
                 let optionObjects = {};
                 this.options.forEach(optionElement => {
-                    options       = this.manageOptionElement(optionElement);
-                    optionObjects = Object.assign(optionObjects, options); // Merge each options objects one after the other
+                    this.initialOptions = this.manageOptionElement(optionElement);
+                    optionObjects       = Object.assign(optionObjects, this.initialOptions); // Merge each options objects one after the other
                 });
 
-                options = optionObjects;
+                this.initialOptions = optionObjects;
             } else {
-                options = this.manageOptionElement(this.options);
+                this.initialOptions = this.manageOptionElement(this.options);
             }
 
+            // Define if the generated non-input element should have the contenteditable attribute set to `true`
+            this.hasContentEditable = !this.initialOptions.readOnly;
+        },
+
+        mounted() {
             // Initialize the autoNumeric element
-            this.anElement = new AutoNumeric(this.$refs.autoNumericElement, options);
+            this.anElement = new AutoNumeric(this.$refs.autoNumericElement, this.initialOptions);
             if (this.value !== null && this.value !== '') {
                 this.anElement.set(this.value);
                 // The `v-model` must be updated with that default value on startup
