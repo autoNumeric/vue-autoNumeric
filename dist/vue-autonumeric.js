@@ -12,7 +12,7 @@
 		exports["VueAutonumeric"] = factory(require("AutoNumeric"));
 	else
 		root["VueAutonumeric"] = factory(root["AutoNumeric"]);
-})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_43__) {
+})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_44__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -82,7 +82,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 0 */
 /***/ (function(module, exports) {
 
-var core = module.exports = { version: '2.5.4' };
+var core = module.exports = { version: '2.5.7' };
 if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
 
 
@@ -306,7 +306,7 @@ var _assign = __webpack_require__(16);
 
 var _assign2 = _interopRequireDefault(_assign);
 
-var _autoNumeric = __webpack_require__(43);
+var _autoNumeric = __webpack_require__(44);
 
 var _autoNumeric2 = _interopRequireDefault(_autoNumeric);
 
@@ -335,9 +335,9 @@ exports.default = {
         return createElement(this.tag, {
             attrs: attributes,
             ref: 'autoNumericElement',
-            on: {
-                'autoNumeric:rawValueModified': this.updateVModel
-            }
+            on: (0, _assign2.default)(this.$listeners, {
+                'autoNumeric:rawValueModified': this.updateVModel,
+                input: undefined })
         });
     },
 
@@ -718,9 +718,9 @@ module.exports = function (bitmap, value) {
 
 // 19.1.2.1 Object.assign(target, source, ...)
 var getKeys = __webpack_require__(30);
-var gOPS = __webpack_require__(40);
-var pIE = __webpack_require__(41);
-var toObject = __webpack_require__(42);
+var gOPS = __webpack_require__(41);
+var pIE = __webpack_require__(42);
+var toObject = __webpack_require__(43);
 var IObject = __webpack_require__(7);
 var $assign = Object.assign;
 
@@ -757,7 +757,7 @@ module.exports = !$assign || __webpack_require__(4)(function () {
 
 // 19.1.2.14 / 15.2.3.14 Object.keys(O)
 var $keys = __webpack_require__(31);
-var enumBugKeys = __webpack_require__(39);
+var enumBugKeys = __webpack_require__(40);
 
 module.exports = Object.keys || function keys(O) {
   return $keys(O, enumBugKeys);
@@ -857,7 +857,7 @@ module.exports = function (index, length) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var shared = __webpack_require__(37)('keys');
-var uid = __webpack_require__(38);
+var uid = __webpack_require__(39);
 module.exports = function (key) {
   return shared[key] || (shared[key] = uid(key));
 };
@@ -867,16 +867,29 @@ module.exports = function (key) {
 /* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
+var core = __webpack_require__(0);
 var global = __webpack_require__(1);
 var SHARED = '__core-js_shared__';
 var store = global[SHARED] || (global[SHARED] = {});
-module.exports = function (key) {
-  return store[key] || (store[key] = {});
-};
+
+(module.exports = function (key, value) {
+  return store[key] || (store[key] = value !== undefined ? value : {});
+})('versions', []).push({
+  version: core.version,
+  mode: __webpack_require__(38) ? 'pure' : 'global',
+  copyright: '© 2018 Denis Pushkarev (zloirock.ru)'
+});
 
 
 /***/ }),
 /* 38 */
+/***/ (function(module, exports) {
+
+module.exports = true;
+
+
+/***/ }),
+/* 39 */
 /***/ (function(module, exports) {
 
 var id = 0;
@@ -887,7 +900,7 @@ module.exports = function (key) {
 
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, exports) {
 
 // IE 8- don't enum bug keys
@@ -897,21 +910,21 @@ module.exports = (
 
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports) {
 
 exports.f = Object.getOwnPropertySymbols;
 
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports) {
 
 exports.f = {}.propertyIsEnumerable;
 
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.1.13 ToObject(argument)
@@ -922,10 +935,10 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_43__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_44__;
 
 /***/ })
 /******/ ])["default"];

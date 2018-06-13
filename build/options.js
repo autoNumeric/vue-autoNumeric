@@ -26,6 +26,7 @@ module.exports = {
         output: {
             main    : path.join(__dirname, '..', 'dist'),
             examples: path.join(__dirname, '..', 'examples/js'),
+            examplesBase: path.join(__dirname, '..', 'examples'),
         },
 
         resolve(location) {

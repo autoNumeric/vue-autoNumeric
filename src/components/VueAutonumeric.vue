@@ -92,9 +92,10 @@ OTHER DEALINGS IN THE SOFTWARE.
             return createElement(this.tag, {
                 attrs: attributes,
                 ref  : 'autoNumericElement',
-                on   : {
+                on   : Object.assign(this.$listeners, {
                     'autoNumeric:rawValueModified': this.updateVModel,
-                },
+                    input: undefined, // input event is handeled by autoNumeric component updateVModel method
+                }),
             });
         },
 
