@@ -220,7 +220,7 @@ The [contribution guidelines](https://github.com/autoNumeric/autoNumeric/blob/ne
 
 ### Support
 
-As always, if you find this useful, please consider [supporting its development](https://www.patreon.com/user?u=4810062)!<br>
+As always, if you find this useful, please consider [supporting its development](https://www.patreon.com/AlexandreBonneau)!<br>
 Huge Thanks :)
 
 ### License
