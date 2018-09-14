@@ -1,8 +1,8 @@
 <!--
               vue-autonumeric
 
-@version      1.2.5
-@date         2018-05-25 UTC 19:50
+@version      1.2.6
+@date         2018-09-14 UTC 19:06
 
 @author       Alexandre Bonneau
 @copyright    2018 © Alexandre Bonneau <alexandre.bonneau@linuxfr.eu>
@@ -102,7 +102,7 @@ OTHER DEALINGS IN THE SOFTWARE.
             value: {
                 required: false,
                 validator(val) {
-                    return typeof val === 'number' || val === '' || val === null;
+                    return typeof val === 'number' || typeof val === 'string' || val === '' || val === null;
                 },
             },
 

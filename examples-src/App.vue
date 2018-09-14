@@ -279,6 +279,14 @@
 							<div class="rawValue">{{ externalTracker }}</div>
 						</div>
 					</div>
+
+					<div :class="boxClasses" :style="boxStyle">
+						<div :class="labelClasses">Text variable for the value (cf. issue #24)</div>
+						<div class="inputAndRawValue">
+							<vue-autonumeric :options="''" v-model="textAnModel"/>
+							<div class="rawValue">{{ textAnModel }}</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -300,6 +308,7 @@
                 autoNumericModel : 221456.72, // Default value for the examples
                 autoNumericModel2: 12468.642,
                 autoNumericModel3: 221226.44,
+                textAnModel      : '12468.02',
                 anModel          : 42.01,
                 emptyValue       : '',
                 externalTracker  : 1222114.66,

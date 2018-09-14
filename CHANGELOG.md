@@ -1,5 +1,8 @@
 ## Changelog for vue-autoNumeric
 
+### 1.2.6
++ Fixes #24 VueAutonumeric value prop validator should accept strings
+
 ### 1.2.5
 + Fixes #14 The `readOnly` option is not respected for non-input tags (`contenteditable` is always set to `true`)
 

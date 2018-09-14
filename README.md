@@ -225,7 +225,7 @@ Huge Thanks :)
 
 ### License
 
-`vue-autoNumeric` is open source and released under the [MIT License](https://github.com/autoNumeric/vue-autoNumeric/blob/master/LICENSE).
+`vue-autoNumeric` is open-source and released under the [MIT License](https://github.com/autoNumeric/vue-autoNumeric/blob/master/LICENSE).
 
 <br>Copyright © 2016-2018 Alexandre Bonneau
 

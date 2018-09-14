@@ -1,5 +1,5 @@
 /**
- * vue-autonumeric v1.2.5 (https://github.com/autoNumeric/vue-autoNumeric)
+ * vue-autonumeric v1.2.6 (https://github.com/autoNumeric/vue-autoNumeric)
  * © 2018 Alexandre Bonneau <alexandre.bonneau@linuxfr.eu>
  * Released under the MIT License.
  */
@@ -346,7 +346,7 @@ exports.default = {
         value: {
             required: false,
             validator: function validator(val) {
-                return typeof val === 'number' || val === '' || val === null;
+                return typeof val === 'number' || typeof val === 'string' || val === '' || val === null;
             }
         },
 
