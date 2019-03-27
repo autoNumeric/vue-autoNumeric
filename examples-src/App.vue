@@ -21,6 +21,15 @@
 						<h2 class="ma0 pb2 f2 fw4 lh-1">Autonumeric component usage examples</h2>
 						<p class="ma0 lh-copy f6">Vue-Autonumeric as the flexibility and power of its <a href="https://github.com/autoNumeric/autoNumeric" class="repoLink">AutoNumeric parent library</a>. It can be configured as you like.</p>
 					</a>
+
+                    <div :class="boxClasses" :style="boxStyle">
+						<div :class="labelClasses">Default vue-autonumeric with :value</div>
+						<div class="inputAndRawValue">
+							<vue-autonumeric :options="''" :value="valueModel" @blur="testBlur"/>
+							<div class="rawValue">{{ valueModel }}</div>
+						</div>
+					</div>
+
 					<div :class="boxClasses" :style="boxStyle">
 						<div :class="labelClasses">Default vue-autonumeric</div>
 						<div class="inputAndRawValue">
@@ -297,6 +306,7 @@
 
         data() {
             return {
+                valueModel: 123,
                 autoNumericModel : 221456.72, // Default value for the examples
                 autoNumericModel2: 12468.642,
                 autoNumericModel3: 221226.44,
@@ -407,6 +417,10 @@
 
             setToEmptyStringVModel() {
 	            this.emptyValue = '';
+            },
+
+            testBlur(val) {
+                this.valueModel = val;
             },
         },
     };

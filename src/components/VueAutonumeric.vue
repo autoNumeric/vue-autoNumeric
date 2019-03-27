@@ -92,10 +92,10 @@ OTHER DEALINGS IN THE SOFTWARE.
             return createElement(this.tag, {
                 attrs: attributes,
                 ref  : 'autoNumericElement',
-                on   : Object.assign(this.$listeners, {
+                on   : {
+                    blur: this.updateVModel,
                     'autoNumeric:rawValueModified': this.updateVModel,
-                    input: undefined, // input event is handeled by autoNumeric component updateVModel method
-                }),
+                },
             });
         },
 
@@ -205,8 +205,9 @@ OTHER DEALINGS IN THE SOFTWARE.
              * @param {Event} event This is needed if we want to use the `event.timeStamp` attribute
              */
             updateVModel(event) {
+                const eventType = event && event.type || {};
                 if (this.anElement !== null) {
-                    this.$emit('input', this.anElement.getNumber(), event);
+                    this.$emit(eventType === 'autoNumeric:rawValueModified' ? 'input' : eventType, this.anElement.getNumber(), event);
                 }
             },
 

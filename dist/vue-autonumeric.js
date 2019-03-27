@@ -1,6 +1,6 @@
 /**
  * vue-autonumeric v1.2.5 (https://github.com/autoNumeric/vue-autoNumeric)
- * © 2018 Alexandre Bonneau <alexandre.bonneau@linuxfr.eu>
+ * © 2019 Alexandre Bonneau <alexandre.bonneau@linuxfr.eu>
  * Released under the MIT License.
  */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -82,7 +82,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 0 */
 /***/ (function(module, exports) {
 
-var core = module.exports = { version: '2.5.7' };
+var core = module.exports = { version: '2.6.5' };
 if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
 
 
@@ -335,9 +335,10 @@ exports.default = {
         return createElement(this.tag, {
             attrs: attributes,
             ref: 'autoNumericElement',
-            on: (0, _assign2.default)(this.$listeners, {
-                'autoNumeric:rawValueModified': this.updateVModel,
-                input: undefined })
+            on: {
+                blur: this.updateVModel,
+                'autoNumeric:rawValueModified': this.updateVModel
+            }
         });
     },
 
@@ -420,8 +421,9 @@ exports.default = {
 
     methods: {
         updateVModel: function updateVModel(event) {
+            var eventType = event && event.type || {};
             if (this.anElement !== null) {
-                this.$emit('input', this.anElement.getNumber(), event);
+                this.$emit(eventType === 'autoNumeric:rawValueModified' ? 'input' : eventType, this.anElement.getNumber(), event);
             }
         },
         manageOptionElement: function manageOptionElement(optionElement) {
@@ -877,7 +879,7 @@ var store = global[SHARED] || (global[SHARED] = {});
 })('versions', []).push({
   version: core.version,
   mode: __webpack_require__(38) ? 'pure' : 'global',
-  copyright: '© 2018 Denis Pushkarev (zloirock.ru)'
+  copyright: '© 2019 Denis Pushkarev (zloirock.ru)'
 });
 
 
