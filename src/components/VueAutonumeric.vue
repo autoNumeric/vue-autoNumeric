@@ -93,6 +93,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                 attrs: attributes,
                 ref  : 'autoNumericElement',
                 on   : {
+                    'blur': this.blurUpdateVModel,
                     'autoNumeric:rawValueModified': this.updateVModel,
                 },
             });
@@ -203,7 +204,13 @@ OTHER DEALINGS IN THE SOFTWARE.
              *
              * @param {Event} event This is needed if we want to use the `event.timeStamp` attribute
              */
-            updateVModel(event) {
+            blurUpdateVModel(event) {
+                if (this.anElement !== null) {
+                    this.$emit('blur', this.anElement.getNumber(), event);
+                }
+            },
+
+			updateVModel(event) {
                 if (this.anElement !== null) {
                     this.$emit('input', this.anElement.getNumber(), event);
                 }
