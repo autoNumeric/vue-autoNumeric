@@ -80,20 +80,23 @@ OTHER DEALINGS IN THE SOFTWARE.
             let attributes;
             if (isInput) {
                 attributes = {
+					id	 		   : this.id,
                     type           : 'text',
                     placeholder    : this.placeholder,
                 };
             } else {
                 attributes = {
+					id	 		   : this.id,
                     contenteditable: this.hasContentEditable,
                 };
             }
 
             return createElement(this.tag, {
                 attrs: attributes,
-                ref  : 'autoNumericElement',
+				ref  : 'autoNumericElement',
                 on   : {
-                    'blur': this.blurUpdateVModel,
+					
+					'blur': this.blurUpdateVModel,
                     'autoNumeric:rawValueModified': this.updateVModel,
                 },
             });
@@ -105,7 +108,9 @@ OTHER DEALINGS IN THE SOFTWARE.
                 validator(val) {
                     return typeof val === 'number' || typeof val === 'string' || val === '' || val === null;
                 },
-            },
+			},
+			
+			id: {type: String, default: "42AutoNumeric"},
 
             options: {
                 type    : [Object, String, Array],
