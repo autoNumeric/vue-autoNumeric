@@ -38,7 +38,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 -->
 
 <script type="text/babel">
-    import AutoNumeric from 'autonumeric/dist/autoNumeric.min';
+    import AutoNumeric from 'autonumeric';
 
     // Custom default autoNumeric option can be set here to override the default autoNumeric ones
     const defaultOptions = {};
