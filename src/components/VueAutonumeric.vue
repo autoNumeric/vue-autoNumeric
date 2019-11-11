@@ -173,11 +173,9 @@ OTHER DEALINGS IN THE SOFTWARE.
         mounted() {
             // Initialize the autoNumeric element
             this.anElement = new AutoNumeric(this.$refs.autoNumericElement, this.initialOptions);
-            if (this.value !== null && this.value !== '') {
-                this.anElement.set(this.value);
-                // The `v-model` must be updated with that default value on startup
-                this.updateVModel(); //FIXME Send the `event.timeStamp` info here
-            }
+            this.anElement.set(this.value);
+            // The `v-model` must be updated with that default value on startup
+            this.updateVModel(); //FIXME Send the `event.timeStamp` info here
         },
 
         computed: {
