@@ -37,6 +37,26 @@ config.plugins = config.plugins.concat([
     }),
 ]);
 
+config.externals = {
+    // This prevent bundling the AutoNumeric library inside the vue-autonumeric component
+    // cf. https://webpack.js.org/configuration/externals/
+    /*
+     * Important note:
+     * We need to setup root to use global variable here, since we want the user to be able to just use a
+     * CDN link to the AutoNumeric library and make sure `vue-autonumeric` will correctly use this
+     * (since it's exported as `AutoNumeric`, with this case).
+     *
+     * However if you are using `vue-autonumeric` in an ES6 module setup with a bundling tool
+     * (ie. Webpack), then it should still import 'autonumeric' with this case from your node_modules.
+     */
+    autonumeric: {
+        commonjs2: 'autonumeric',
+        commonjs: 'autonumeric',
+        amd: 'autonumeric',
+        root: '_', // indicates global variable 'AutoNumeric'
+    },
+};
+
 if (options.isProduction) {
     // Production only
     config.plugins = config.plugins.concat([

@@ -1,18 +1,18 @@
 /**
  * vue-autonumeric v1.2.6 (https://github.com/autoNumeric/vue-autoNumeric)
- * © 2018 Alexandre Bonneau <alexandre.bonneau@linuxfr.eu>
+ * © 2020 Alexandre Bonneau <alexandre.bonneau@linuxfr.eu>
  * Released under the MIT License.
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("AutoNumeric"));
+		module.exports = factory(require("autonumeric"));
 	else if(typeof define === 'function' && define.amd)
-		define("VueAutonumeric", ["AutoNumeric"], factory);
+		define("VueAutonumeric", ["autonumeric"], factory);
 	else if(typeof exports === 'object')
-		exports["VueAutonumeric"] = factory(require("AutoNumeric"));
+		exports["VueAutonumeric"] = factory(require("autonumeric"));
 	else
-		root["VueAutonumeric"] = factory(root["AutoNumeric"]);
-})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_43__) {
+		root["VueAutonumeric"] = factory(root["_"]);
+})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_44__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -82,12 +82,22 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 0 */
 /***/ (function(module, exports) {
 
-var core = module.exports = { version: '2.5.4' };
+var core = module.exports = { version: '2.6.11' };
 if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
 
 
 /***/ }),
 /* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Thank's IE8 for his funny defineProperty
+module.exports = !__webpack_require__(4)(function () {
+  return Object.defineProperty({}, 'a', { get: function () { return 7; } }).a != 7;
+});
+
+
+/***/ }),
+/* 2 */
 /***/ (function(module, exports) {
 
 // https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
@@ -99,22 +109,12 @@ if (typeof __g == 'number') __g = global; // eslint-disable-line no-undef
 
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, exports) {
 
 module.exports = function (it) {
   return typeof it === 'object' ? it !== null : typeof it === 'function';
 };
-
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// Thank's IE8 for his funny defineProperty
-module.exports = !__webpack_require__(4)(function () {
-  return Object.defineProperty({}, 'a', { get: function () { return 7; } }).a != 7;
-});
 
 
 /***/ }),
@@ -306,9 +306,9 @@ var _assign = __webpack_require__(16);
 
 var _assign2 = _interopRequireDefault(_assign);
 
-var _autoNumeric = __webpack_require__(43);
+var _autonumeric = __webpack_require__(44);
 
-var _autoNumeric2 = _interopRequireDefault(_autoNumeric);
+var _autonumeric2 = _interopRequireDefault(_autonumeric);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -400,12 +400,10 @@ exports.default = {
         this.hasContentEditable = !this.initialOptions.readOnly;
     },
     mounted: function mounted() {
-        this.anElement = new _autoNumeric2.default(this.$refs.autoNumericElement, this.initialOptions);
-        if (this.value !== null && this.value !== '') {
-            this.anElement.set(this.value);
+        this.anElement = new _autonumeric2.default(this.$refs.autoNumericElement, this.initialOptions);
+        this.anElement.set(this.value);
 
-            this.updateVModel();
-        }
+        this.updateVModel();
     },
 
 
@@ -427,7 +425,7 @@ exports.default = {
         manageOptionElement: function manageOptionElement(optionElement) {
             var options = void 0;
             if (typeof optionElement === 'string' || optionElement instanceof String) {
-                options = _autoNumeric2.default.getPredefinedOptions()[optionElement];
+                options = _autonumeric2.default.getPredefinedOptions()[optionElement];
                 if (options === void 0 || options === null) {
                     console.warn('The given pre-defined options [' + optionElement + '] is not recognized by AutoNumeric.\nSwitching back to the default options.');
                     options = defaultOptions;
@@ -449,9 +447,9 @@ exports.default = {
 
                 var optionsToUse = void 0;
                 if (Array.isArray(newValue.options)) {
-                    optionsToUse = _autoNumeric2.default.mergeOptions(newValue.options);
+                    optionsToUse = _autonumeric2.default.mergeOptions(newValue.options);
                 } else {
-                    optionsToUse = _autoNumeric2.default._getOptionObject(newValue.options);
+                    optionsToUse = _autonumeric2.default._getOptionObject(newValue.options);
                 }
 
                 this.anElement.update(optionsToUse);
@@ -509,7 +507,7 @@ $export($export.S + $export.F, 'Object', { assign: __webpack_require__(29) });
 /* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var global = __webpack_require__(1);
+var global = __webpack_require__(2);
 var core = __webpack_require__(0);
 var ctx = __webpack_require__(20);
 var hide = __webpack_require__(22);
@@ -615,7 +613,7 @@ module.exports = function (it) {
 
 var dP = __webpack_require__(23);
 var createDesc = __webpack_require__(28);
-module.exports = __webpack_require__(3) ? function (object, key, value) {
+module.exports = __webpack_require__(1) ? function (object, key, value) {
   return dP.f(object, key, createDesc(1, value));
 } : function (object, key, value) {
   object[key] = value;
@@ -632,7 +630,7 @@ var IE8_DOM_DEFINE = __webpack_require__(25);
 var toPrimitive = __webpack_require__(27);
 var dP = Object.defineProperty;
 
-exports.f = __webpack_require__(3) ? Object.defineProperty : function defineProperty(O, P, Attributes) {
+exports.f = __webpack_require__(1) ? Object.defineProperty : function defineProperty(O, P, Attributes) {
   anObject(O);
   P = toPrimitive(P, true);
   anObject(Attributes);
@@ -649,7 +647,7 @@ exports.f = __webpack_require__(3) ? Object.defineProperty : function defineProp
 /* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isObject = __webpack_require__(2);
+var isObject = __webpack_require__(3);
 module.exports = function (it) {
   if (!isObject(it)) throw TypeError(it + ' is not an object!');
   return it;
@@ -660,7 +658,7 @@ module.exports = function (it) {
 /* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = !__webpack_require__(3) && !__webpack_require__(4)(function () {
+module.exports = !__webpack_require__(1) && !__webpack_require__(4)(function () {
   return Object.defineProperty(__webpack_require__(26)('div'), 'a', { get: function () { return 7; } }).a != 7;
 });
 
@@ -669,8 +667,8 @@ module.exports = !__webpack_require__(3) && !__webpack_require__(4)(function () 
 /* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isObject = __webpack_require__(2);
-var document = __webpack_require__(1).document;
+var isObject = __webpack_require__(3);
+var document = __webpack_require__(2).document;
 // typeof document.createElement is 'object' in old IE
 var is = isObject(document) && isObject(document.createElement);
 module.exports = function (it) {
@@ -683,7 +681,7 @@ module.exports = function (it) {
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.1.1 ToPrimitive(input [, PreferredType])
-var isObject = __webpack_require__(2);
+var isObject = __webpack_require__(3);
 // instead of the ES6 spec version, we didn't implement @@toPrimitive case
 // and the second argument - flag - preferred type is a string
 module.exports = function (it, S) {
@@ -717,10 +715,11 @@ module.exports = function (bitmap, value) {
 "use strict";
 
 // 19.1.2.1 Object.assign(target, source, ...)
+var DESCRIPTORS = __webpack_require__(1);
 var getKeys = __webpack_require__(30);
-var gOPS = __webpack_require__(40);
-var pIE = __webpack_require__(41);
-var toObject = __webpack_require__(42);
+var gOPS = __webpack_require__(41);
+var pIE = __webpack_require__(42);
+var toObject = __webpack_require__(43);
 var IObject = __webpack_require__(7);
 var $assign = Object.assign;
 
@@ -746,7 +745,10 @@ module.exports = !$assign || __webpack_require__(4)(function () {
     var length = keys.length;
     var j = 0;
     var key;
-    while (length > j) if (isEnum.call(S, key = keys[j++])) T[key] = S[key];
+    while (length > j) {
+      key = keys[j++];
+      if (!DESCRIPTORS || isEnum.call(S, key)) T[key] = S[key];
+    }
   } return T;
 } : $assign;
 
@@ -757,7 +759,7 @@ module.exports = !$assign || __webpack_require__(4)(function () {
 
 // 19.1.2.14 / 15.2.3.14 Object.keys(O)
 var $keys = __webpack_require__(31);
-var enumBugKeys = __webpack_require__(39);
+var enumBugKeys = __webpack_require__(40);
 
 module.exports = Object.keys || function keys(O) {
   return $keys(O, enumBugKeys);
@@ -857,7 +859,7 @@ module.exports = function (index, length) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var shared = __webpack_require__(37)('keys');
-var uid = __webpack_require__(38);
+var uid = __webpack_require__(39);
 module.exports = function (key) {
   return shared[key] || (shared[key] = uid(key));
 };
@@ -867,16 +869,29 @@ module.exports = function (key) {
 /* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var global = __webpack_require__(1);
+var core = __webpack_require__(0);
+var global = __webpack_require__(2);
 var SHARED = '__core-js_shared__';
 var store = global[SHARED] || (global[SHARED] = {});
-module.exports = function (key) {
-  return store[key] || (store[key] = {});
-};
+
+(module.exports = function (key, value) {
+  return store[key] || (store[key] = value !== undefined ? value : {});
+})('versions', []).push({
+  version: core.version,
+  mode: __webpack_require__(38) ? 'pure' : 'global',
+  copyright: '© 2019 Denis Pushkarev (zloirock.ru)'
+});
 
 
 /***/ }),
 /* 38 */
+/***/ (function(module, exports) {
+
+module.exports = true;
+
+
+/***/ }),
+/* 39 */
 /***/ (function(module, exports) {
 
 var id = 0;
@@ -887,7 +902,7 @@ module.exports = function (key) {
 
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, exports) {
 
 // IE 8- don't enum bug keys
@@ -897,21 +912,21 @@ module.exports = (
 
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports) {
 
 exports.f = Object.getOwnPropertySymbols;
 
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports) {
 
 exports.f = {}.propertyIsEnumerable;
 
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.1.13 ToObject(argument)
@@ -922,10 +937,10 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_43__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_44__;
 
 /***/ })
 /******/ ])["default"];
