@@ -15,6 +15,7 @@
     "lintfix": "eslint --fix --ext .js,.vue src examples-src build"
   },
   "main": "dist/vue-autonumeric.min.js",
+  "typings": "types/index.d.ts",
   "readmeFilename": "README.md",
   "keywords": [
     "autonumeric",
