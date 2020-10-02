@@ -8,4 +8,8 @@ if (typeof window !== 'undefined' && window.Vue) {
 
 export { VueAutonumeric };
 
-export default VueAutonumeric;
+export default {
+    install (app) {
+        app.component('vue-autonumeric', VueAutonumeric)
+    }
+}
