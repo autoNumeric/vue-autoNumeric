@@ -102,7 +102,7 @@ OTHER DEALINGS IN THE SOFTWARE.
         },
 
         props: {
-            value: {
+            modelValue: {
                 required: false,
                 validator(val) {
                     return typeof val === 'number' || typeof val === 'string' || val === '' || val === null;
@@ -176,7 +176,7 @@ OTHER DEALINGS IN THE SOFTWARE.
         mounted() {
             // Initialize the autoNumeric element
             this.anElement = new AutoNumeric(this.$refs.autoNumericElement, this.initialOptions);
-            this.anElement.set(this.value);
+            this.anElement.set(this.modelValue);
             // The `v-model` must be updated with that default value on startup
             this.updateVModel(); //FIXME Send the `event.timeStamp` info here
         },
