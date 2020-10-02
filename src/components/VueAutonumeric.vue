@@ -62,7 +62,10 @@ OTHER DEALINGS IN THE SOFTWARE.
      *      :options="{ digitGroupSeparator: '.', decimalCharacter: ',', decimalCharacterAlternative: '.', currencySymbol: '\u00a0€', currencySymbolPlacement: 's', roundingMethod: 'U', minimumValue: '0' }"
      *      :value="42042.69"
      *  />
-     */
+     */ 
+    import { h } from 'vue'
+
+
     export default {
         //TODO If an html value attribute is set in the source, then the 'linked' component sharing the same v-model are not updated with the value nor formatted on load (it takes precedence over the changes made by other inputs, and always keep `value` to the initial value)
         name: 'VueAutonumeric',
@@ -74,7 +77,7 @@ OTHER DEALINGS IN THE SOFTWARE.
          * @param {function} createElement
          * @returns {*}
          */
-        render(createElement) {
+        render() {
             const isInput = this.tag === 'input';
 
             let attributes;
@@ -89,7 +92,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                 };
             }
 
-            return createElement(this.tag, {
+            return h(this.tag, {
                 attrs: attributes,
                 ref  : 'autoNumericElement',
                 on   : {
