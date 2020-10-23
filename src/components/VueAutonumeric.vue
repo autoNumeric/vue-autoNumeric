@@ -65,6 +65,7 @@ OTHER DEALINGS IN THE SOFTWARE.
      */ 
     import { h } from 'vue'
 
+    const createElement = h
 
     export default {
         //TODO If an html value attribute is set in the source, then the 'linked' component sharing the same v-model are not updated with the value nor formatted on load (it takes precedence over the changes made by other inputs, and always keep `value` to the initial value)
@@ -80,6 +81,8 @@ OTHER DEALINGS IN THE SOFTWARE.
         render() {
             const isInput = this.tag === 'input';
 
+            console.log(h)
+
             let attributes;
             if (isInput) {
                 attributes = {
@@ -92,7 +95,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                 };
             }
 
-            return h(this.tag, {
+            return createElement(this.tag, {
                 attrs: attributes,
                 ref  : 'autoNumericElement',
                 on   : {
