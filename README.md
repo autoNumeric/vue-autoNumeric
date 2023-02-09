@@ -39,20 +39,6 @@ This means you **need** to link the [AutoNumeric](https://github.com/autoNumeric
 <script src="https://unpkg.com/autonumeric"></script>
 ```
 
-Then you need to tell Webpack to treat the `AutoNumeric` dependency as [external](https://webpack.js.org/configuration/externals/) so that it does not try to bundle it.<br>Here is a really simple `webpack.config.js` example that does that:
-
-```js
-module.exports = {
-    entry  : './src/vueAutonumericTest.js',
-    output : {
-        filename: './dist/bundle.js'
-    },
-    externals: {
-        autonumeric: 'AutoNumeric',
-    },
-};
-```
-
 #### ...or by importing it directly as an ES6 module
 
 You can choose to directly import the AutoNumeric library in your source code.<br>First, install the `autonumeric` dependency so that Webpack can find it using:
@@ -74,23 +60,6 @@ export default {
         VueAutonumeric,
     },
 }
-```
-
-However, when doing that if you want to be able to bundle all the scripts together with Webpack, you'll **need to define an alias for the `AutoNumeric` library in your Webpack config**, otherwise Webpack will complain about the npm package `autonumeric` case.
-
-The alias that you need to declare in your Webpack configuration:
-```js
-module.exports = {
-    entry  : './src/vueAutonumericTest.js',
-    output : {
-        filename: './dist/bundle.js'
-    },
-    resolve: {
-        alias: {
-            AutoNumeric: 'node_modules/autonumeric/dist/autoNumeric.min',
-        },
-    },
-};
 ```
 
 ### How to use?
